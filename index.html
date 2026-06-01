@@ -114,41 +114,38 @@
         <button>Go to Cart 🛒</button>
     </a>
 </div>
-
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
+let container = document.getElementById("cartItems");
+let total = 0;
 
-function increase(name, price) {
-    if (!cart[name]) {
-        cart[name] = {price: price, qty: 0};
+container.innerHTML = "";
+
+for (let name in cart) {
+    let item = cart[name];
+
+    if (item.qty > 0) {
+        let itemTotal = item.qty * item.price;
+        total += itemTotal;
+
+        container.innerHTML += `
+            <div class="card">
+                <div>
+                    <h3>${name}</h3>
+                    <p>₹${item.price} × ${item.qty}</p>
+                </div>
+
+                <div>
+                    ₹${itemTotal}
+                </div>
+            </div>
+        `;
     }
-
-    cart[name].qty++;
-
-    saveCart();
-    updateUI(name);
 }
 
-function decrease(name) {
-    if (!cart[name]) return;
-
-    if (cart[name].qty > 0) {
-        cart[name].qty--;
-    }
-
-    saveCart();
-    updateUI(name);
-}
-
-function updateUI(name) {
-    document.getElementById(name + "Qty").innerText =
-        cart[name] ? cart[name].qty : 0;
-}
-
-function saveCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
+document.getElementById("total").innerText = "Total: ₹" + total;
 </script>
+
 
 </body>
 </html>
