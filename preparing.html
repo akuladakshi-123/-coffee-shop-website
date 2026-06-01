@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preparing Order</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            margin:0;
+            font-family:Poppins;
+            background:#f7f1e8;
+            text-align:center;
+        }
+
+        .box{
+            margin-top:120px;
+        }
+
+        .loader{
+            width:80px;
+            height:80px;
+            border:6px solid #ddd;
+            border-top:6px solid #3b2f2f;
+            border-radius:50%;
+            margin:20px auto;
+            animation:spin 1s linear infinite;
+        }
+
+        @keyframes spin{
+            100%{ transform:rotate(360deg); }
+        }
+
+        h1{
+            color:#3b2f2f;
+        }
+
+        p{
+            color:#6f4e37;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="loader"></div>
+
+    <h1>Preparing Your Coffee ☕</h1>
+    <p>Please wait… we are making it fresh</p>
+
+</div>
+
+<script>
+setTimeout(()=>{
+    window.location.href="success.html";
+}, 4000);
+</script>
+
+</body>
+</html>
