@@ -1,4 +1,4 @@
 function orderCoffee() {
-    alert("Thanks for visiting Brew Haven! ☕");
+    document.getElementById("message").innerHTML =
+        "🛒 Coffee added to cart! Total: ₹150";
 }
- 
