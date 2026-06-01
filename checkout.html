@@ -2,27 +2,109 @@
 <html>
 <head>
     <title>Checkout - Drip Cafe</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f5efe6;
+            text-align: center;
+        }
+
+        header {
+            background: #3b2f2f;
+            color: white;
+            padding: 20px;
+        }
+
+        .box {
+            max-width: 400px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .qr {
+            width: 220px;
+            height: 220px;
+            margin: 20px auto;
+            border-radius: 12px;
+            border: 2px dashed #3b2f2f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #3b2f2f;
+        }
+
+        .upi {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        button {
+            background: #3b2f2f;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #6f4e37;
+        }
+
+        .note {
+            font-size: 13px;
+            color: gray;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
-<h1>💳 Scan & Pay</h1>
 
-<p>Pay using UPI (Google Pay / PhonePe / Paytm)</p>
+<header>
+    <h1>💳 Secure Checkout</h1>
+</header>
 
-<h3>Scan QR Below 👇</h3>
+<div class="box">
 
-<!-- You can replace this with real QR image later -->
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=coffee-order"
-     alt="QR Code">
+    <h2>Scan & Pay</h2>
 
-<br><br>
+    <!-- QR STYLE BOX -->
+    <div class="qr">
+        📱 QR CODE HERE
+    </div>
 
-<button onclick="goNext()">I Have Paid</button>
+    <div class="upi">
+        UPI ID: dripcafe@upi
+    </div>
+
+    <p>Pay using any UPI app (GPay / PhonePe / Paytm)</p>
+
+    <button onclick="placeOrder()">I Have Paid ✔ Place Order</button>
+
+    <p class="note">
+        After payment, click button to confirm your order ☕
+    </p>
+
+</div>
 
 <script>
-function goNext() {
-    window.location.href = "order.html";
+function placeOrder() {
+    localStorage.removeItem("cart");
+    window.location.href = "success.html";
 }
 </script>
 
