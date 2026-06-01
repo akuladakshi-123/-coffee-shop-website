@@ -8,13 +8,40 @@
 
 <h1>🛒 Your Cart</h1>
 
-<p>Cappuccino - ₹150</p>
+<h2>Cappuccino ☕</h2>
+
+<button onclick="decrease()">-</button>
+
+<span id="quantity">1</span>
+
+<button onclick="increase()">+</button>
+
+<h3>Total: ₹<span id="total">150</span></h3>
 
 <h2>Total: ₹150</h2>
 
 <button onclick="window.location.href='checkout.html'">
     Order Now ☕
+
 </button>
+<script>
+let quantity = 1;
+let price = 150;
+
+function increase() {
+    quantity++;
+    document.getElementById("quantity").innerHTML = quantity;
+    document.getElementById("total").innerHTML = quantity * price;
+}
+
+function decrease() {
+    if (quantity > 1) {
+        quantity--;
+        document.getElementById("quantity").innerHTML = quantity;
+        document.getElementById("total").innerHTML = quantity * price;
+    }
+}
+</script>
 
 </body>
 </html>
