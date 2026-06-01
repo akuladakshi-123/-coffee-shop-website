@@ -16,13 +16,12 @@
             background: #3b2f2f;
             color: white;
             text-align: center;
-            padding: 25px;
+            padding: 20px;
         }
 
         .container {
             max-width: 500px;
             margin: 20px auto;
-            padding: 10px;
         }
 
         .card {
@@ -33,16 +32,11 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-
-        .qty {
-            font-weight: bold;
         }
 
         .total {
             text-align: center;
-            font-size: 20px;
+            font-size: 22px;
             margin-top: 20px;
         }
 
@@ -53,10 +47,6 @@
             padding: 10px 15px;
             border-radius: 10px;
             cursor: pointer;
-        }
-
-        button:hover {
-            background: #6f4e37;
         }
 
         .checkout {
@@ -82,33 +72,44 @@
     </a>
 </div>
 
+<div class="checkout">
+    <button onclick="clearCart()">Clear Cart 🗑</button>
+</div>
+
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 let container = document.getElementById("cartItems");
 let total = 0;
 
-for (let item in cart) {
-    let data = cart[item];
+container.innerHTML = "";
 
-    if (data.qty > 0) {
-        total += data.price * data.qty;
+for (let name in cart) {
+    let item = cart[name];
+
+    if (item.qty > 0) {
+        let itemTotal = item.qty * item.price;
+        total += itemTotal;
 
         container.innerHTML += `
             <div class="card">
                 <div>
-                    <h3>${item}</h3>
-                    <p>₹${data.price}</p>
+                    <h3>${name}</h3>
+                    <p>₹${item.price} × ${item.qty}</p>
                 </div>
 
-                <div class="qty">
-                    x ${data.qty}
-                </div>
+                <div>
+                    ₹${itemTotal}</div>
             </div>
         `;
     }
 }
 
 document.getElementById("total").innerText = "Total: ₹" + total;
+
+function clearCart() {
+    localStorage.removeItem("cart");
+    location.reload();
+}
 </script>
 
 </body>
