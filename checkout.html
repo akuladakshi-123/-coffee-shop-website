@@ -9,7 +9,7 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: #f5efe6;
+            background: #f7f1e8;
             text-align: center;
         }
 
@@ -20,12 +20,17 @@
         }
 
         .box {
-            max-width: 400px;
-            margin: 40px auto;
+            max-width: 420px;
+            margin: 30px auto;
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .item {
+            text-align: left;
+            padding: 5px 0;
         }
 
         .upi {
@@ -51,16 +56,16 @@
             background: #6f4e37;
         }
 
-        .note {
-            font-size: 13px;
-            color: gray;
-            margin-top: 10px;
+        .order-id {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #6f4e37;
         }
 
         img {
             width: 220px;
             height: 220px;
-            margin: 20px auto;
+            margin: 15px auto;
             border-radius: 12px;
         }
     </style>
@@ -69,32 +74,60 @@
 <body>
 
 <header>
-    <h1>💳 Secure UPI Payment</h1>
+    <h1>💳 Secure Checkout</h1>
 </header>
 
 <div class="box">
 
-    <h2>Scan & Pay</h2>
+    <div class="order-id" id="orderId"></div>
 
-    <!-- REAL QR CODE -->
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=dripcafe@upi&pn=Drip%20Cafe" />
+    <h3>Order Summary</h3>
+    <div id="summary"></div>
 
-    <div class="upi">
-        UPI ID: dripcafe@upi
-    </div>
+    <h2 id="total">Total: ₹0</h2>
 
-    <p>Pay using GPay / PhonePe / Paytm</p>
+    <!-- REAL QR -->
+    <img id="qr">
 
-    <button onclick="placeOrder()">I Have Paid ✔ Place Order</button>
+    <div class="upi">UPI: dripcafe@upi</div>
 
-    <p class="note">
-        After payment click the button to confirm order ☕
-    </p>
+    <button onclick="pay()">I Have Paid ✔ Place Order</button>
 
 </div>
 
 <script>
-function placeOrder() {
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+let summary = document.getElementById("summary");
+let total = 0;
+
+// ORDER ID
+let orderId = "DRIP-" + Math.floor(1000 + Math.random() * 9000);
+document.getElementById("orderId").innerText = "Order ID: " + orderId;
+
+summary.innerHTML = "";
+
+// BUILD SUMMARY
+for(let name in cart){
+    let item = cart[name];
+
+    if(item.qty > 0){
+        let itemTotal = item.qty * item.price;
+        total += itemTotal;
+
+        summary.innerHTML += `
+            <div class="item">${name} × ${item.qty} = ₹${itemTotal}</div>
+        `;
+    }
+}
+
+document.getElementById("total").innerText = "Total: ₹" + total;
+
+// REAL QR WITH TOTAL
+document.getElementById("qr").src =
+"https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+encodeURIComponent("upi://pay?pa=dripcafe@upi&pn=DripCafe&am=" + total);
+
+function pay(){
     localStorage.removeItem("cart");
     window.location.href = "success.html";
 }
