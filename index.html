@@ -118,6 +118,16 @@
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
+function showToast(message){
+    let toast = document.getElementById("toast");
+    toast.innerText = message;
+    toast.style.opacity = "1";
+
+    setTimeout(()=>{
+        toast.style.opacity = "0";
+    }, 1200);
+}
+
 function inc(name, price){
     if(!cart[name]){
         cart[name] = {price:price, qty:0};
@@ -128,6 +138,8 @@ function inc(name, price){
     localStorage.setItem("cart", JSON.stringify(cart));
 
     document.getElementById(name+"Qty").innerText = cart[name].qty;
+
+    showToast(name + " added ☕");
 }
 
 function dec(name){
