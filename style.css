@@ -1,51 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap');
+
+/* GLOBAL */
 body {
+    margin: 0;
     font-family: 'Poppins', sans-serif;
-    text-align: center;
-    background-color: #f5e6d3;
-    margin-top: 100px;
+    background: #f7f1e8;
+    color: #2b1b12;
 }
 
-h1 {
-    color: #6f4e37;
-    font-size: 50px;
-}
-
-p {
-    font-size: 22px;
-}
-
-button {
-    background-color: #6f4e37;
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(135deg, #3b2f2f, #6f4e37);
     color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 10px;
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    opacity: 0.9;
     font-size: 18px;
+}
+
+/* MENU CARD */
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    margin: 15px auto;
+    max-width: 420px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* BUTTONS */
+button {
+    background: #3b2f2f;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    transform: scale(1.05);
-} 
-h1 {
-    font-size: 40px;
+    background: #6f4e37;
 }
 
-h2 {
-    font-size: 30px;
+/* QUANTITY */
+.qty {
+    font-size: 18px;
+    margin: 0 12px;
+    font-weight: bold;
 }
 
-h3 {
-    font-size: 25px;
+/* TOTAL TEXT */
+.total {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px;
 }
 
-button {
-    font-size: 20px;
-    padding: 10px 20px;
-    margin: 10px;
+/* CONTAINERS */
+.container, .box {
+    max-width: 500px;
+    margin: auto;
 }
 
-#quantity {
-    font-size: 30px;
-    margin: 15px;
+/* CART LAYOUT */
+.card div {
+    font-size: 16px;
+}
+
+/* SMALL TEXT */
+p {
+    line-height: 1.5;
 }
