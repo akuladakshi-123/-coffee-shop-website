@@ -1,67 +1,134 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Drip Cafe</title>
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5efe6;
+            margin: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 18px;
+            color: gray;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 12px;
+        }
+
+        section {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 12px;
+            background: white;
+        }
+
+        button {
+            background: #3b2f2f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6f4e37;
+            transform: scale(1.05);
+        }
+
+        #message {
+            text-align: center;
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
+
 <header>
-    <h1>drip cafe ☕</h1>
-    <p>Fresh Coffee, Fresh Start</p>
-</header> 
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800"
-alt="Coffee"
-width="300">
+    <h1>☕ DRIP CAFE</h1>
+    <p>Fresh Coffee • Fresh Mood • Fresh Start</p>
+</header>
 
-<section style="max-width:600px; margin:auto;">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800" alt="Coffee">
 
+<section>
     <h2 style="text-align:center;">Our Menu</h2>
 
-    <div style="border:1px solid #ddd; padding:15px; margin:10px; border-radius:12px;">
+    <div class="card">
         <h3>☕ Espresso</h3>
         <p>₹120</p>
         <button onclick="addToCart('Espresso',120)">Add to Cart</button>
     </div>
 
-    <div style="border:1px solid #ddd; padding:15px; margin:10px; border-radius:12px;">
+    <div class="card">
         <h3>☕ Cappuccino</h3>
         <p>₹150</p>
         <button onclick="addToCart('Cappuccino',150)">Add to Cart</button>
     </div>
 
-    <div style="border:1px solid #ddd; padding:15px; margin:10px; border-radius:12px;">
+    <div class="card">
         <h3>☕ Latte</h3>
         <p>₹180</p>
         <button onclick="addToCart('Latte',180)">Add to Cart</button>
     </div>
-
 </section>
 
 <section>
     <h2>About Us</h2>
-    <p>
-        Welcome to drip cafe. We serve freshly brewed coffee
-        made with premium beans and lots of passion.
+    <p style="text-align:center;">
+        Welcome to Drip Cafe. We serve freshly brewed coffee made with premium beans and passion ☕
     </p>
 </section>
-    
-<a href="cart.html">
-    <button>Go to Cart 🛒</button>
-</a>
+
+<div style="text-align:center;">
+    <a href="cart.html">
+        <button>Go to Cart 🛒</button>
+    </a>
+</div>
 
 <p id="message"></p>
 
-<script src="script.js"></script>
-
 <script>
-let cart = [];
-
 function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     cart.push({name, price});
+
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(name + " added to cart ☕");
+
+    document.getElementById("message").innerText = name + " added to cart ☕";
 }
-</script>    
+</script>
+
 </body>
-</html> 
+</html>
+
