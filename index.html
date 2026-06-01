@@ -15,34 +15,40 @@
         }
 
         .hero {
-            padding: 80px 20px 40px;
+            padding: 90px 20px 50px;
         }
 
         h1 {
-            font-size: 50px;
+            font-size: 52px;
             margin: 0;
+            letter-spacing: 2px;
         }
 
         p {
-            opacity: 0.9;
+            opacity: 0.85;
+            font-size: 18px;
         }
 
         .card-container {
             background: #f5efe6;
             color: black;
-            border-radius: 30px 30px 0 0;
-            padding: 30px 20px;
+            border-radius: 35px 35px 0 0;
+            padding: 40px 20px;
             margin-top: 40px;
         }
 
         .card {
             background: white;
             padding: 15px;
-            margin: 10px auto;
+            margin: 12px auto;
             border-radius: 15px;
             max-width: 400px;
             text-align: left;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .price {
+            opacity: 0.7;
         }
 
         button {
@@ -59,8 +65,8 @@
             background: #6f4e37;
         }
 
-        .go-cart {
-            margin-top: 20px;
+        .cart-btn {
+            margin-top: 25px;
         }
     </style>
 </head>
@@ -69,32 +75,32 @@
 
 <div class="hero">
     <h1>☕ DRIP CAFE</h1>
-    <p>Minimal vibes • Fresh coffee • Cozy moments</p>
+    <p>Minimal • Cozy • Fresh Coffee Experience</p>
 </div>
 
 <div class="card-container">
 
-    <h2>Our Specials</h2>
+    <h2>Our Menu</h2>
 
     <div class="card">
         <h3>Espresso</h3>
-        <p>Strong & Bold ☕ — ₹120</p>
-        <button onclick="addToCart('Espresso',120)">Add</button>
+        <p class="price">₹120</p>
+        <button onclick="addToCart('Espresso',120)">Add to Cart</button>
     </div>
 
     <div class="card">
         <h3>Cappuccino</h3>
-        <p>Creamy & Smooth ☕ — ₹150</p>
-        <button onclick="addToCart('Cappuccino',150)">Add</button>
+        <p class="price">₹150</p>
+        <button onclick="addToCart('Cappuccino',150)">Add to Cart</button>
     </div>
 
     <div class="card">
         <h3>Latte</h3>
-        <p>Soft & Milky ☕ — ₹180</p>
-        <button onclick="addToCart('Latte',180)">Add</button>
+        <p class="price">₹180</p>
+        <button onclick="addToCart('Latte',180)">Add to Cart</button>
     </div>
 
-    <div class="go-cart">
+    <div class="cart-btn">
         <a href="cart.html">
             <button>Go to Cart 🛒</button>
         </a>
