@@ -88,3 +88,45 @@ button:hover {
 p {
     line-height: 1.5;
 }
+html {
+    scroll-behavior: smooth;
+}
+
+/* BUTTON ANIMATION */
+button {
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* CARD ANIMATION */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* STICKY HEADER */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #3b2f2f;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* PAGE FADE IN */
+body {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
