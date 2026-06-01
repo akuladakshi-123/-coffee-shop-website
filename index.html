@@ -33,6 +33,7 @@
         }
 
         .qty { margin:0 10px; font-weight:bold; }
+
         .cart-btn { text-align:center; margin:20px; }
     </style>
 </head>
@@ -43,8 +44,6 @@
     <h1>☕ DRIP CAFE</h1>
     <p>Fresh Coffee • Cozy Vibes</p>
 </div>
-
-<!-- MENU -->
 
 <div class="card">
     <h3>Espresso ☕</h3>
@@ -79,32 +78,36 @@
 </div>
 
 <div class="cart-btn">
-    <a href="cart.html"><button>Go to Cart 🛒</button></a>
+    <a href="cart.html">
+        <button>Go to Cart 🛒</button>
+    </a>
 </div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
 function inc(name, price){
-    if(!cart[name]) cart[name]={price:price, qty:0};
+    if(!cart[name]){
+        cart[name] = {price: price, qty: 0};
+    }
+
     cart[name].qty++;
-    save();
-    update(name);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    document.getElementById(name+"Qty").innerText = cart[name].qty;
 }
 
 function dec(name){
     if(!cart[name]) return;
-    if(cart[name].qty>0) cart[name].qty--;
-    save();
-    update(name);
-}
 
-function save(){
+    if(cart[name].qty > 0){
+        cart[name].qty--;
+    }
+
     localStorage.setItem("cart", JSON.stringify(cart));
-}
 
-function update(name){
-    document.getElementById(name+"Qty").innerText = cart[name]?.qty || 0;
+    document.getElementById(name+"Qty").innerText = cart[name].qty;
 }
 </script>
 
