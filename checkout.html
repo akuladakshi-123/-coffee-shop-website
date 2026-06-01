@@ -21,24 +21,11 @@
 
         .box {
             max-width: 400px;
-            margin: 30px auto;
+            margin: 40px auto;
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .qr {
-            width: 220px;
-            height: 220px;
-            margin: 20px auto;
-            border-radius: 12px;
-            border: 2px dashed #3b2f2f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #3b2f2f;
         }
 
         .upi {
@@ -53,11 +40,11 @@
             background: #3b2f2f;
             color: white;
             border: none;
-            padding: 12px 18px;
-            border-radius: 10px;
-            cursor: pointer;
+            padding: 12px;
             width: 100%;
+            border-radius: 10px;
             font-size: 16px;
+            cursor: pointer;
         }
 
         button:hover {
@@ -69,34 +56,39 @@
             color: gray;
             margin-top: 10px;
         }
+
+        img {
+            width: 220px;
+            height: 220px;
+            margin: 20px auto;
+            border-radius: 12px;
+        }
     </style>
 </head>
 
 <body>
 
 <header>
-    <h1>💳 Secure Checkout</h1>
+    <h1>💳 Secure UPI Payment</h1>
 </header>
 
 <div class="box">
 
     <h2>Scan & Pay</h2>
 
-    <!-- QR STYLE BOX -->
-    <div class="qr">
-        📱 QR CODE HERE
-    </div>
+    <!-- REAL QR CODE -->
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=dripcafe@upi&pn=Drip%20Cafe" />
 
     <div class="upi">
         UPI ID: dripcafe@upi
     </div>
 
-    <p>Pay using any UPI app (GPay / PhonePe / Paytm)</p>
+    <p>Pay using GPay / PhonePe / Paytm</p>
 
     <button onclick="placeOrder()">I Have Paid ✔ Place Order</button>
 
     <p class="note">
-        After payment, click button to confirm your order ☕
+        After payment click the button to confirm order ☕
     </p>
 
 </div>
