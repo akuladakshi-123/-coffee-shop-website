@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body { margin:0; font-family:Poppins; background:#f5efe6; }
+        body { margin:0; font-family:Poppins; background:#f7f1e8; }
 
         .hero {
             background: linear-gradient(135deg,#3b2f2f,#6f4e37);
@@ -20,8 +20,8 @@
             margin:15px auto;
             padding:15px;
             border-radius:12px;
-            max-width:400px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+            max-width:420px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
         }
 
         button {
@@ -30,53 +30,85 @@
             border:none;
             padding:8px 12px;
             border-radius:8px;
+            cursor:pointer;
         }
 
         .qty { margin:0 10px; font-weight:bold; }
 
-        .cart-btn { text-align:center; margin:20px; }
+        img {
+            width:100%;
+            border-radius:12px;
+        }
+
+        .cart-btn {
+            text-align:center;
+            margin:20px;
+        }
     </style>
 </head>
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
     <h1>☕ DRIP CAFE</h1>
-    <p>Fresh Coffee • Cozy Vibes</p>
+    <p>Fresh Coffee • Cozy Vibes • Premium Taste</p>
 </div>
 
-<div class="card">
-    <h3>Espresso ☕</h3>
-    <p>₹120</p>
-    <button onclick="dec('Espresso')">-</button>
-    <span class="qty" id="EspressoQty">0</span>
-    <button onclick="inc('Espresso',120)">+</button>
-</div>
+<!-- MENU -->
+<section>
 
-<div class="card">
-    <h3>Cappuccino ☕</h3>
-    <p>₹150</p>
-    <button onclick="dec('Cappuccino')">-</button>
-    <span class="qty" id="CappuccinoQty">0</span>
-    <button onclick="inc('Cappuccino',150)">+</button>
-</div>
+    <h2 style="text-align:center;">Our Menu ☕</h2>
 
-<div class="card">
-    <h3>Latte 🥛</h3>
-    <p>₹180</p>
-    <button onclick="dec('Latte')">-</button>
-    <span class="qty" id="LatteQty">0</span>
-    <button onclick="inc('Latte',180)">+</button>
-</div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500">
+        <h3>Espresso</h3>
+        <p>Strong bold coffee shot</p>
+        <p>₹120</p>
+        <button onclick="inc('Espresso',120)">+</button>
+        <span class="qty" id="EspressoQty">0</span>
+        <button onclick="dec('Espresso')">-</button>
+    </div>
 
-<div class="card">
-    <h3>Mocha 🍫</h3>
-    <p>₹200</p>
-    <button onclick="dec('Mocha')">-</button>
-    <span class="qty" id="MochaQty">0</span>
-    <button onclick="inc('Mocha',200)">+</button>
-</div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500">
+        <h3>Cappuccino</h3>
+        <p>Creamy foam coffee</p>
+        <p>₹150</p>
+        <button onclick="inc('Cappuccino',150)">+</button>
+        <span class="qty" id="CappuccinoQty">0</span>
+        <button onclick="dec('Cappuccino')">-</button>
+    </div>
 
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1521302080334-4bebac276a8e?w=500">
+        <h3>Latte</h3>
+        <p>Smooth milk coffee</p>
+        <p>₹180</p>
+        <button onclick="inc('Latte',180)">+</button>
+        <span class="qty" id="LatteQty">0</span>
+        <button onclick="dec('Latte')">-</button>
+    </div>
+
+</section>
+
+<!-- ABOUT US -->
+<section class="card">
+
+    <h2>About Us ☕</h2>
+
+    <p>
+        Welcome to <b>Drip Cafe</b> — where every cup feels like comfort.
+        We serve freshly brewed coffee made with premium beans.
+    </p>
+
+    <p>
+        Our goal is simple: deliver happiness in every sip ☕✨
+    </p>
+
+</section>
+
+<!-- CART BUTTON -->
 <div class="cart-btn">
     <a href="cart.html">
         <button>Go to Cart 🛒</button>
@@ -88,7 +120,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
 function inc(name, price){
     if(!cart[name]){
-        cart[name] = {price: price, qty: 0};
+        cart[name] = {price:price, qty:0};
     }
 
     cart[name].qty++;
