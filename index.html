@@ -20,16 +20,19 @@ width="300">
     <div>
         <h3>Espresso</h3>
         <p>₹120</p>
+        <button onclick="addToCart('Espresso',120)">Add to Cart</button>
     </div>
 
     <div>
         <h3>Cappuccino</h3>
         <p>₹150</p>
+        <button onclick="addToCart('Cappuccino',150)">Add to Cart</button>
     </div>
 
     <div>
         <h3>Latte</h3>
         <p>₹180</p>
+        <button onclick="addToCart('Latte',180)">Add to Cart</button>
     </div>
 </section>
 
@@ -40,13 +43,23 @@ width="300">
         made with premium beans and lots of passion.
     </p>
 </section>
-
+    
 <a href="cart.html">
-    <button>Add to Cart 🛒</button>
+    <button>Go to Cart 🛒</button>
 </a>
 
 <p id="message"></p>
 
 <script src="script.js"></script>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to cart ☕");
+}
+</script>    
 </body>
 </html> 
