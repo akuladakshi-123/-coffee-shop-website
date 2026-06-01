@@ -9,37 +9,33 @@
 
 <h1>🛒 Your Cart</h1>
 
-<h2>Cappuccino ☕</h2>
+<div id="cartItems"></div>
 
-<button onclick="decrease()">-</button>
-
-<span id="quantity">1</span>
-
-<button onclick="increase()">+</button>
-
-<h3>Total: ₹<span id="total">150</span></h3>
-
+<h3 id="total">Total: ₹0</h3>
 
 <a href="checkout.html">
     <button>Proceed to Checkout ☕</button>
 </a>
+
 <script>
-let quantity = 1;
-let price = 150;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function increase() {
-    quantity++;
-    document.getElementById("quantity").innerHTML = quantity;
-    document.getElementById("total").innerHTML = quantity * price;
-}
+let container = document.getElementById("cartItems");
+let total = 0;
 
-function decrease() {
-    if (quantity > 1) {
-        quantity--;
-        document.getElementById("quantity").innerHTML = quantity;
-        document.getElementById("total").innerHTML = quantity * price;
-    }
-}
+cart.forEach(item => {
+    total += item.price;
+
+    container.innerHTML += `
+        <div>
+            <h2>${item.name}</h2>
+            <p>₹${item.price}</p>
+        </div>
+        <hr>
+    `;
+});
+
+document.getElementById("total").innerText = "Total: ₹" + total;
 </script>
 
 </body>
