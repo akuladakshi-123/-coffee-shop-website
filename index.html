@@ -3,51 +3,46 @@
 <head>
     <title>Drip Cafe</title>
 
-    <link rel="stylesheet" href="style.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
+            margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: #f5efe6;
-            margin: 0;
-        }
-
-        header {
+            background: linear-gradient(135deg, #3b2f2f, #6f4e37);
+            color: white;
             text-align: center;
-            padding: 30px;
         }
 
-        header h1 {
-            font-size: 42px;
+        .hero {
+            padding: 80px 20px 40px;
+        }
+
+        h1 {
+            font-size: 50px;
             margin: 0;
         }
 
-        header p {
-            font-size: 18px;
-            color: gray;
+        p {
+            opacity: 0.9;
         }
 
-        img {
-            display: block;
-            margin: auto;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 12px;
-        }
-
-        section {
-            max-width: 600px;
-            margin: 30px auto;
+        .card-container {
+            background: #f5efe6;
+            color: black;
+            border-radius: 30px 30px 0 0;
+            padding: 30px 20px;
+            margin-top: 40px;
         }
 
         .card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 12px;
             background: white;
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 15px;
+            max-width: 400px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         button {
@@ -55,67 +50,57 @@
             color: white;
             padding: 10px 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
         }
 
         button:hover {
-            background: #6f4e37;
             transform: scale(1.05);
+            background: #6f4e37;
         }
 
-        #message {
-            text-align: center;
-            color: green;
+        .go-cart {
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
 
-<header>
+<div class="hero">
     <h1>☕ DRIP CAFE</h1>
-    <p>Fresh Coffee • Fresh Mood • Fresh Start</p>
-</header>
-
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800" alt="Coffee">
-
-<section>
-    <h2 style="text-align:center;">Our Menu</h2>
-
-    <div class="card">
-        <h3>☕ Espresso</h3>
-        <p>₹120</p>
-        <button onclick="addToCart('Espresso',120)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-        <h3>☕ Cappuccino</h3>
-        <p>₹150</p>
-        <button onclick="addToCart('Cappuccino',150)">Add to Cart</button>
-    </div>
-
-    <div class="card">
-        <h3>☕ Latte</h3>
-        <p>₹180</p>
-        <button onclick="addToCart('Latte',180)">Add to Cart</button>
-    </div>
-</section>
-
-<section>
-    <h2>About Us</h2>
-    <p style="text-align:center;">
-        Welcome to Drip Cafe. We serve freshly brewed coffee made with premium beans and passion ☕
-    </p>
-</section>
-
-<div style="text-align:center;">
-    <a href="cart.html">
-        <button>Go to Cart 🛒</button>
-    </a>
+    <p>Minimal vibes • Fresh coffee • Cozy moments</p>
 </div>
 
-<p id="message"></p>
+<div class="card-container">
+
+    <h2>Our Specials</h2>
+
+    <div class="card">
+        <h3>Espresso</h3>
+        <p>Strong & Bold ☕ — ₹120</p>
+        <button onclick="addToCart('Espresso',120)">Add</button>
+    </div>
+
+    <div class="card">
+        <h3>Cappuccino</h3>
+        <p>Creamy & Smooth ☕ — ₹150</p>
+        <button onclick="addToCart('Cappuccino',150)">Add</button>
+    </div>
+
+    <div class="card">
+        <h3>Latte</h3>
+        <p>Soft & Milky ☕ — ₹180</p>
+        <button onclick="addToCart('Latte',180)">Add</button>
+    </div>
+
+    <div class="go-cart">
+        <a href="cart.html">
+            <button>Go to Cart 🛒</button>
+        </a>
+    </div>
+
+</div>
 
 <script>
 function addToCart(name, price) {
@@ -125,10 +110,9 @@ function addToCart(name, price) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    document.getElementById("message").innerText = name + " added to cart ☕";
+    alert(name + " added ☕");
 }
 </script>
 
 </body>
 </html>
-
