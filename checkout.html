@@ -6,23 +6,35 @@
 </head>
 
 <body>
+<h1>💳 Choose Payment Method</h1>
 
-<h1>☕ Checkout</h1>
-
-<h3>Name</h3>
-<input type="text" placeholder="Enter your name">
-
-<h3>Phone Number</h3>
-<input type="text" placeholder="Enter phone number">
-
-<h3>Address</h3>
-<input type="text" placeholder="Enter address">
+<button onclick="selectPayment('Cash')">💵 Cash on Delivery</button>
+<button onclick="selectPayment('UPI')">📱 UPI Payment</button>
 
 <br><br>
 
-<button onclick="window.location.href='success.html'">
-    Place Order ✅
-</button>
+<p id="selected">No payment selected</p>
+
+<br>
+
+<button onclick="goNext()">Place Order</button>
+
+<script>
+let payment = "";
+
+function selectPayment(type) {
+    payment = type;
+    document.getElementById("selected").innerText = "Selected: " + type;
+}
+
+function goNext() {
+    if (payment === "") {
+        alert("Please select payment method");
+    } else {
+        window.location.href = "order.html";
+    }
+}
+</script>
 
 </body>
 </html>
