@@ -1,124 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Drip Cafe</title>
+<section style="max-width:600px; margin:30px auto;">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #3b2f2f, #6f4e37);
-            color: white;
-            text-align: center;
-        }
-
-        .hero {
-            padding: 90px 20px 50px;
-        }
-
-        h1 {
-            font-size: 52px;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-
-        p {
-            opacity: 0.85;
-            font-size: 18px;
-        }
-
-        .card-container {
-            background: #f5efe6;
-            color: black;
-            border-radius: 35px 35px 0 0;
-            padding: 40px 20px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: white;
-            padding: 15px;
-            margin: 12px auto;
-            border-radius: 15px;
-            max-width: 400px;
-            text-align: left;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .price {
-            opacity: 0.7;
-        }
-
-        button {
-            background: #3b2f2f;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            transform: scale(1.05);
-            background: #6f4e37;
-        }
-
-        .cart-btn {
-            margin-top: 25px;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="hero">
-    <h1>☕ DRIP CAFE</h1>
-    <p>Minimal • Cozy • Fresh Coffee Experience</p>
-</div>
-
-<div class="card-container">
-
-    <h2>Our Menu</h2>
+    <h2 style="text-align:center;">☕ Our Menu</h2>
 
     <div class="card">
-        <h3>Espresso</h3>
-        <p class="price">₹120</p>
-        <button onclick="addToCart('Espresso',120)">Add to Cart</button>
+        <h3>Espresso ☕</h3>
+        <p>Strong & Bold Coffee</p>
+        <p>₹120</p>
+        <button onclick="addToCart('Espresso',120)">Add</button>
     </div>
 
     <div class="card">
-        <h3>Cappuccino</h3>
-        <p class="price">₹150</p>
-        <button onclick="addToCart('Cappuccino',150)">Add to Cart</button>
+        <h3>Cappuccino ☕</h3>
+        <p>Classic creamy coffee</p>
+        <p>₹150</p>
+        <button onclick="addToCart('Cappuccino',150)">Add</button>
     </div>
 
     <div class="card">
-        <h3>Latte</h3>
-        <p class="price">₹180</p>
-        <button onclick="addToCart('Latte',180)">Add to Cart</button>
+        <h3>Latte 🥛</h3>
+        <p>Smooth & milky coffee</p>
+        <p>₹180</p>
+        <button onclick="addToCart('Latte',180)">Add</button>
     </div>
 
-    <div class="cart-btn">
+    <div class="card">
+        <h3>Mocha 🍫</h3>
+        <p>Chocolate flavored coffee</p>
+        <p>₹200</p>
+        <button onclick="addToCart('Mocha',200)">Add</button>
+    </div>
+
+    <div class="card">
+        <h3>Cold Coffee 🧊</h3>
+        <p>Chilled refreshing coffee</p>
+        <p>₹160</p>
+        <button onclick="addToCart('Cold Coffee',160)">Add</button>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
         <a href="cart.html">
             <button>Go to Cart 🛒</button>
         </a>
     </div>
 
-</div>
-
-<script>
-function addToCart(name, price) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    cart.push({name, price});
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    alert(name + " added ☕");
-}
-</script>
-
-</body>
-</html>
+</section>
