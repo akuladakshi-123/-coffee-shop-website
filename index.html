@@ -125,19 +125,19 @@ function increase(name, price) {
 
     cart[name].qty++;
 
-    updateUI(name);
     saveCart();
+    updateUI(name);
 }
 
-function decrease(name, price) {
+function decrease(name) {
     if (!cart[name]) return;
 
     if (cart[name].qty > 0) {
         cart[name].qty--;
     }
 
-    updateUI(name);
     saveCart();
+    updateUI(name);
 }
 
 function updateUI(name) {
