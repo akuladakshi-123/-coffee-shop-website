@@ -2,21 +2,71 @@
 <html>
 <head>
     <title>Order Confirmed</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #3b2f2f, #6f4e37);
+            color: white;
+            text-align: center;
+        }
+
+        .box {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #c8a97e;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
-<body style="text-align:center; font-family: Arial; background:#f5efe6;">
+<body>
 
-    <h1>🎉 Thanks for Ordering!</h1>
+<div class="box">
 
-    <p>Your coffee is being prepared ☕</p>
+    <h1>🎉 Thank You!</h1>
+    <p>Your order has been placed successfully ☕</p>
 
-    <p>We’ll serve it fresh soon!</p>
-
-    <br>
+    <div class="card">
+        <h2>☕ DAKSHI CAFE</h2>
+        <p>Order Status: Preparing...</p>
+        <p>Estimated Time: 5–10 mins</p>
+    </div>
 
     <button onclick="window.location.href='index.html'">
-        Back to Home
+        Back to Menu
     </button>
+
+</div>
 
 </body>
 </html>
