@@ -2,139 +2,139 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <title>Drip Cafe</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body { margin:0; font-family:Poppins; background:#f7f1e8; }
-
-        .hero {
-            background: linear-gradient(135deg,#3b2f2f,#6f4e37);
-            color:white;
-            text-align:center;
-            padding:80px 20px;
+        body{
+            margin:0;
+            font-family:Poppins;
+            background:#f7f1e8;
         }
 
-        .card {
+        .hero{
+            background:linear-gradient(135deg,#3b2f2f,#6f4e37);
+            color:white;
+            text-align:center;
+            padding:70px 20px;
+        }
+
+        .hero h1{
+            margin:0;
+            font-size:40px;
+        }
+
+        .card{
             background:white;
-            margin:15px auto;
+            margin:12px auto;
             padding:15px;
             border-radius:12px;
             max-width:420px;
-            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
         }
 
-        button {
-            background:#3b2f2f;
-            color:white;
-            border:none;
-            padding:8px 12px;
-            border-radius:8px;
-            cursor:pointer;
-        }
-
-        .qty { margin:0 10px; font-weight:bold; }
-
-        img {
+        img{
             width:100%;
             border-radius:12px;
         }
 
-        .cart-btn {
+        button{
+            background:#3b2f2f;
+            color:white;
+            border:none;
+            padding:10px 12px;
+            border-radius:10px;
+            cursor:pointer;
+        }
+
+        .qty{
+            margin:0 10px;
+            font-weight:bold;
+        }
+
+        .cart-bar{
+            position:fixed;
+            bottom:0;
+            left:0;
+            width:100%;
+            background:#f7f1e8;
+            padding:10px;
+            box-shadow:0 -5px 15px rgba(0,0,0,0.1);
             text-align:center;
-            margin:20px;
+        }
+
+        .cart-bar button{
+            width:90%;
+        }
+
+        #toast{
+            position:fixed;
+            bottom:80px;
+            left:50%;
+            transform:translateX(-50%);
+            background:#3b2f2f;
+            color:white;
+            padding:10px 15px;
+            border-radius:10px;
+            opacity:0;
+            transition:0.3s;
         }
     </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
     <h1>☕ DRIP CAFE</h1>
-    <p>Fresh Coffee • Cozy Vibes • Premium Taste</p>
+    <p>Fresh Coffee • Cozy Vibes</p>
 </div>
 
-<!-- MENU -->
-<section>
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800">
+    <h3>Espresso</h3>
+    <p>₹120</p>
+    <button onclick="add('Espresso',120)">+</button>
+    <span class="qty" id="EspressoQty">0</span>
+    <button onclick="remove('Espresso')">-</button>
+</div>
 
-    <h2 style="text-align:center;">Our Menu ☕</h2>
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800">
+    <h3>Cappuccino</h3>
+    <p>₹150</p>
+    <button onclick="add('Cappuccino',150)">+</button>
+    <span class="qty" id="CappuccinoQty">0</span>
+    <button onclick="remove('Cappuccino')">-</button>
+</div>
 
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500">
-        <h3>Espresso</h3>
-        <p>Strong bold coffee shot</p>
-        <p>₹120</p>
-        <button onclick="inc('Espresso',120)">+</button>
-        <span class="qty" id="EspressoQty">0</span>
-        <button onclick="dec('Espresso')">-</button>
-    </div>
-
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500">
-        <h3>Cappuccino</h3>
-        <p>Creamy foam coffee</p>
-        <p>₹150</p>
-        <button onclick="inc('Cappuccino',150)">+</button>
-        <span class="qty" id="CappuccinoQty">0</span>
-        <button onclick="dec('Cappuccino')">-</button>
-    </div>
-
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80">
-        <h3>Latte</h3>
-        <p>Smooth milk coffee</p>
-        <p>₹180</p>
-        <button onclick="inc('Latte',180)">+</button>
-        <span class="qty" id="LatteQty">0</span>
-        <button onclick="dec('Latte')">-</button>
-    </div>
-
-</section>
-
-<!-- ABOUT US -->
-<section class="card">
-
-    <h2>About Us ☕</h2>
-
-    <p>
-        Welcome to <b>Drip Cafe</b> — where every cup feels like comfort.
-        We serve freshly brewed coffee made with premium beans.
-    </p>
-
-    <p>
-        Our goal is simple: deliver happiness in every sip ☕✨
-    </p>
-
-</section>
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800">
+    <h3>Latte</h3>
+    <p>₹180</p>
+    <button onclick="add('Latte',180)">+</button>
+    <span class="qty" id="LatteQty">0</span>
+    <button onclick="remove('Latte')">-</button>
+</div>
 
 <!-- CART BUTTON -->
-<a href="cart.html">
-    <button type="button">Go to Cart 🛒</button>
-</a>
+<div class="cart-bar">
+    <a href="cart.html" style="text-decoration:none;">
+        <button type="button">Go to Cart 🛒</button>
+    </a>
+</div>
+
+<div id="toast"></div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-function showToast(message){
-    let toast = document.getElementById("toast");
-    toast.innerText = message;
-    toast.style.opacity = "1";
-
-    setTimeout(()=>{
-        toast.style.opacity = "0";
-    }, 1200);
-}
-
-function inc(name, price){
+function add(name, price){
     if(!cart[name]){
         cart[name] = {price:price, qty:0};
     }
 
     cart[name].qty++;
-
     localStorage.setItem("cart", JSON.stringify(cart));
 
     document.getElementById(name+"Qty").innerText = cart[name].qty;
@@ -142,7 +142,7 @@ function inc(name, price){
     showToast(name + " added ☕");
 }
 
-function dec(name){
+function remove(name){
     if(!cart[name]) return;
 
     if(cart[name].qty > 0){
@@ -153,23 +153,17 @@ function dec(name){
 
     document.getElementById(name+"Qty").innerText = cart[name].qty;
 }
-</script>
-<div id="toast">Added to cart ☕</div>
 
-<style>
-#toast {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #3b2f2f;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 10px;
-    opacity: 0;
-    transition: 0.4s;
+function showToast(msg){
+    let t = document.getElementById("toast");
+    t.innerText = msg;
+    t.style.opacity = "1";
+
+    setTimeout(()=>{
+        t.style.opacity = "0";
+    },1200);
 }
-</style>
+</script>
 
 </body>
 </html>
