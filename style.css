@@ -118,3 +118,40 @@ header {
 p {
     line-height: 1.5;
 }
+@media (max-width: 600px) {
+
+    body {
+        padding: 0;
+    }
+
+    .hero {
+        padding: 60px 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .card {
+        margin: 10px;
+        width: auto;
+        max-width: 95%;
+        padding: 12px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .qty {
+        display: inline-block;
+        margin: 8px;
+    }
+
+}
