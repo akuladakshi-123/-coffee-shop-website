@@ -12,26 +12,18 @@
             background: #f5efe6;
         }
 
-        /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, #3b2f2f, #6f4e37);
             color: white;
             text-align: center;
-            padding: 90px 20px;
+            padding: 80px 20px;
         }
 
         .hero h1 {
-            font-size: 52px;
+            font-size: 50px;
             margin: 0;
-            letter-spacing: 2px;
         }
 
-        .hero p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-
-        /* MENU CARD */
         .card {
             background: white;
             margin: 15px auto;
@@ -68,10 +60,9 @@
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
     <h1>☕ DRIP CAFE</h1>
-    <p>Fresh Coffee • Cozy Vibes • Daily Brew</p>
+    <p>Fresh Coffee • Cozy Vibes</p>
 </div>
 
 <!-- MENU -->
@@ -79,7 +70,7 @@
 <div class="card">
     <h3>Espresso ☕</h3>
     <p>₹120</p>
-    <button onclick="decrease('Espresso',120)">-</button>
+    <button onclick="decrease('Espresso')">-</button>
     <span class="qty" id="EspressoQty">0</span>
     <button onclick="increase('Espresso',120)">+</button>
 </div>
@@ -87,7 +78,7 @@
 <div class="card">
     <h3>Cappuccino ☕</h3>
     <p>₹150</p>
-    <button onclick="decrease('Cappuccino',150)">-</button>
+    <button onclick="decrease('Cappuccino')">-</button>
     <span class="qty" id="CappuccinoQty">0</span>
     <button onclick="increase('Cappuccino',150)">+</button>
 </div>
@@ -95,7 +86,7 @@
 <div class="card">
     <h3>Latte 🥛</h3>
     <p>₹180</p>
-    <button onclick="decrease('Latte',180)">-</button>
+    <button onclick="decrease('Latte')">-</button>
     <span class="qty" id="LatteQty">0</span>
     <button onclick="increase('Latte',180)">+</button>
 </div>
@@ -103,12 +94,11 @@
 <div class="card">
     <h3>Mocha 🍫</h3>
     <p>₹200</p>
-    <button onclick="decrease('Mocha',200)">-</button>
+    <button onclick="decrease('Mocha')">-</button>
     <span class="qty" id="MochaQty">0</span>
     <button onclick="increase('Mocha',200)">+</button>
 </div>
 
-<!-- CART BUTTON -->
 <div class="cart-btn">
     <a href="cart.html">
         <button>Go to Cart 🛒</button>
@@ -125,8 +115,8 @@ function increase(name, price) {
 
     cart[name].qty++;
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    document.getElementById(name + "Qty").innerText = cart[name].qty;
+    saveCart();
+    updateUI(name);
 }
 
 function decrease(name) {
@@ -136,11 +126,24 @@ function decrease(name) {
         cart[name].qty--;
     }
 
+    saveCart();
+    updateUI(name);
+}
+
+function updateUI(name) {
+    document.getElementById(name + "Qty").innerText =
+        cart[name] ? cart[name].qty : 0;
+}
+
+function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
-    document.getElementById(name + "Qty").innerText = cart[name].qty;
+}
+
+function clearCart() {
+    localStorage.removeItem("cart");
+    location.reload();
 }
 </script>
-
 
 </body>
 </html>
