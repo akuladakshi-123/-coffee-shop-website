@@ -7,7 +7,7 @@
 
     <style>
         body{font-family:Poppins;background:#f5efe6;margin:0;}
-        header{background:#3b2f2f;color:white;padding:20px;text-align:center;}
+        header{background:#3b2f2f;color:white;text-align:center;padding:20px;}
 
         .card{
             background:white;
@@ -20,13 +20,22 @@
         }
 
         .total{text-align:center;font-size:22px;margin:20px;}
-        button{background:#3b2f2f;color:white;border:none;padding:10px;border-radius:10px;}
+
+        button{
+            background:#3b2f2f;
+            color:white;
+            border:none;
+            padding:10px;
+            border-radius:10px;
+        }
     </style>
 </head>
 
 <body>
 
-<header><h1>🛒 Your Cart</h1></header>
+<header>
+    <h1>🛒 Your Cart</h1>
+</header>
 
 <div id="cartItems"></div>
 
@@ -46,8 +55,8 @@ container.innerHTML = "";
 for(let name in cart){
     let item = cart[name];
 
-    if(item.qty>0){
-        let itemTotal = item.qty * item.price;
+    if(item.qty > 0){
+        let itemTotal = item.price * item.qty;
         total += itemTotal;
 
         container.innerHTML += `
@@ -62,7 +71,7 @@ for(let name in cart){
     }
 }
 
-document.getElementById("total").innerText = "Total: ₹"+total;
+document.getElementById("total").innerText = "Total: ₹" + total;
 </script>
 
 </body>
