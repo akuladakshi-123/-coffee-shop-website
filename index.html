@@ -1,59 +1,258 @@
-<div class="card">
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400">
-<h3>Espresso</h3>
-<p>₹120</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drip Cafe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f5f1ea;
+}
+
+header{
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:25px;
+background:#f5f1ea;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:32px;
+font-family:'Playfair Display',serif;
+font-weight:bold;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:black;
+font-weight:500;
+}
+
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:60px 80px;
+min-height:85vh;
+}
+
+.content{
+max-width:600px;
+}
+
+.content h1{
+font-size:70px;
+font-family:'Playfair Display',serif;
+line-height:1.1;
+}
+
+.content p{
+font-size:20px;
+margin-top:20px;
+color:#555;
+}
+
+.order-btn{
+margin-top:25px;
+padding:15px 35px;
+border:none;
+background:black;
+color:white;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+}
+
+.image img{
+width:500px;
+border-radius:20px;
+}
+
+#menu{
+padding:80px 40px;
+text-align:center;
+}
+
+#menu h2{
+font-size:50px;
+margin-bottom:40px;
+font-family:'Playfair Display',serif;
+}
+
+.menu-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:25px;
+}
+
+.card{
+background:white;
+width:250px;
+padding:15px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin-top:10px;
+}
+
+.card p{
+color:#666;
+}
+
+#contact{
+padding:80px 40px;
+text-align:center;
+}
+
+#contact h2{
+font-size:45px;
+margin-bottom:20px;
+font-family:'Playfair Display',serif;
+}
+
+footer{
+text-align:center;
+padding:20px;
+border-top:1px solid #ccc;
+margin-top:40px;
+}
+
+@media(max-width:900px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.content h1{
+font-size:48px;
+}
+
+.image img{
+width:320px;
+margin-top:30px;
+}
+
+header{
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+gap:15px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">☕ Drip Cafe</div>
+
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+
+<div class="content">
+<h1>Every Moment<br>Has Its Flavour.</h1>
+
+<p>
+Discover hand-crafted coffee made with passion and premium beans.
+Enjoy every sip at Drip Cafe.
+</p>
+
+<button class="order-btn">Order Now</button>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400">
-<h3>Cappuccino</h3>
-<p>₹180</p>
+<div class="image">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900" alt="Coffee">
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400">
-<h3>Mocha</h3>
-<p>₹220</p>
+</section>
+
+<section id="menu">
+
+<h2>Our Menu ☕</h2>
+
+<div class="menu-container">
+
+<div class="card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400"><h3>Espresso</h3><p>₹120</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400"><h3>Cappuccino</h3><p>₹180</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400"><h3>Mocha</h3><p>₹220</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1521302080371-df3f0eebf5f9?w=400"><h3>Latte</h3><p>₹200</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400"><h3>Americano</h3><p>₹150</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400"><h3>Cold Coffee</h3><p>₹190</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400"><h3>Caramel Latte</h3><p>₹240</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?w=400"><h3>Vanilla Latte</h3><p>₹230</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400"><h3>Irish Coffee</h3><p>₹260</p></div>
+
+<div class="card"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400"><h3>Hazelnut Coffee</h3><p>₹250</p></div>
+
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1521302080371-df3f0eebf5f9?w=400">
-<h3>Latte</h3>
-<p>₹200</p>
-</div>
+</section>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400">
-<h3>Americano</h3>
-<p>₹150</p>
-</div>
+<section id="contact">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400">
-<h3>Cold Coffee</h3>
-<p>₹190</p>
-</div>
+<h2>Contact Us 📍</h2>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400">
-<h3>Caramel Latte</h3>
-<p>₹240</p>
-</div>
+<p><strong>Drip Cafe</strong></p>
+<p>MG Road, Vijayawada, Andhra Pradesh, India</p>
+<p>📞 +91 98765 43210</p>
+<p>✉️ dripcafe@gmail.com</p>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?w=400">
-<h3>Vanilla Latte</h3>
-<p>₹230</p>
-</div>
+</section>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400">
-<h3>Irish Coffee</h3>
-<p>₹260</p>
-</div>
+<footer>
+© 2026 Drip Cafe | Every Moment Has Its Flavour ☕
+</footer>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400">
-<h3>Hazelnut Coffee</h3>
-<p>₹250</p>
-</div>
+</body>
+</html>
