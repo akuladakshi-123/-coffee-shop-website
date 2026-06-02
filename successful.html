@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Successful</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:#fff;
+}
+
+/* CARD */
+.box{
+background:#f5e6d3;
+color:#2b1b14;
+padding:40px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+animation:pop 0.5s ease;
+max-width:350px;
+}
+
+/* POP ANIMATION */
+@keyframes pop{
+from{
+transform:scale(0.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+/* CHECK ICON */
+.check{
+width:90px;
+height:90px;
+background:#2ecc71;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:auto;
+animation:zoom 0.5s ease;
+}
+
+.check span{
+font-size:50px;
+color:white;
+}
+
+@keyframes zoom{
+from{
+transform:scale(0);
+}
+to{
+transform:scale(1);
+}
+}
+
+h1{
+font-family:'Playfair Display',serif;
+margin-top:20px;
+}
+
+p{
+color:#333;
+margin-top:10px;
+}
+
+button{
+margin-top:20px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#2b1b14;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#1a0f0b;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="check">
+<span>✓</span>
+</div>
+
+<h1>Thank You!</h1>
+<p>Your order is placed successfully ☕</p>
+<p>We are preparing your coffee...</p>
+
+<button onclick="goHome()">Back to Menu</button>
+
+</div>
+
+<script>
+
+function goHome(){
+window.location.href = "menu.html";
+}
+
+</script>
+
+</body>
+</html>
