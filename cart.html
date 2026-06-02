@@ -25,31 +25,51 @@ margin:auto;
 background:#f5e6d3;
 color:#2b1b14;
 padding:20px;
-border-radius:12px;
+border-radius:15px;
 }
 
 .item{
 display:flex;
 justify-content:space-between;
 padding:10px;
-border-bottom:1px solid #ccc;
+border-bottom:1px solid #ddd;
 }
 
 .total{
 text-align:right;
 font-size:20px;
 font-weight:bold;
-margin-top:10px;
+margin-top:15px;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
 }
 
 button{
-padding:10px 15px;
+flex:1;
+padding:12px;
 border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:15px;
+}
+
+.view{
 background:#2b1b14;
 color:white;
-border-radius:8px;
-cursor:pointer;
-margin-top:15px;
+}
+
+.order{
+background:green;
+color:white;
+}
+
+.clear{
+background:red;
+color:white;
 }
 
 </style>
@@ -64,14 +84,16 @@ margin-top:15px;
 <script>
 
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
-
 let box = document.getElementById("box");
 
 let total = 0;
+let hasItems = false;
 
 for(let item in cart){
 
 if(cart[item].qty > 0){
+
+hasItems = true;
 
 let itemTotal = cart[item].price * cart[item].qty;
 total += itemTotal;
@@ -85,10 +107,30 @@ box.innerHTML += `
 }
 }
 
+if(!hasItems){
+box.innerHTML = "<h3 style='text-align:center'>Cart is empty ☕</h3>";
+}
+else{
+
 box.innerHTML += `
 <div class="total">Total: ₹${total}</div>
-<button onclick="clearCart()">Clear Cart</button>
+
+<div class="buttons">
+<button class="view" onclick="goMenu()">Add More</button>
+<button class="order" onclick="orderNow()">Order Now</button>
+<button class="clear" onclick="clearCart()">Clear</button>
+</div>
 `;
+}
+
+function goMenu(){
+window.location.href = "menu.html";
+}
+
+function orderNow(){
+localStorage.setItem("cart", JSON.stringify(cart));
+window.location.href = "order.html";
+}
 
 function clearCart(){
 localStorage.removeItem("cart");
