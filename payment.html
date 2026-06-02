@@ -3,91 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Scanner</title>
+<title>Scan</title>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 font-family:Poppins;
-background:linear-gradient(135deg,#1b1b1b,#3a2a24);
+background:linear-gradient(135deg,#2b1b14,#5a3a2b);
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-color:white;
 }
 
-/* CARD */
 .box{
 background:#f5e6d3;
-color:#2b1b14;
 padding:20px;
-border-radius:18px;
-width:340px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-h2{
-margin:5px 0;
-}
-
-/* AI FRAME */
-.frame{
-position:relative;
-width:280px;
-height:280px;
-margin:15px auto;
 border-radius:15px;
-overflow:hidden;
-background:black;
-border:2px solid #2ecc71;
+width:320px;
+text-align:center;
 }
 
-/* CAMERA */
 #reader{
 width:100%;
-height:100%;
-}
-
-/* AI SCAN LINE */
-.frame::before{
-content:"";
-position:absolute;
-width:100%;
-height:3px;
-background:#00ff88;
-animation:scan 1.8s linear infinite;
-z-index:2;
-}
-
-@keyframes scan{
-0%{top:0;}
-100%{top:100%;}
-}
-
-/* CORNERS */
-.corner{
-position:absolute;
-width:25px;
-height:25px;
-border:3px solid #00ff88;
-}
-
-.tl{top:0;left:0;border-right:none;border-bottom:none;}
-.tr{top:0;right:0;border-left:none;border-bottom:none;}
-.bl{bottom:0;left:0;border-right:none;border-top:none;}
-.br{bottom:0;right:0;border-left:none;border-top:none;}
-
-p{
-font-size:13px;
-margin:5px 0;
-color:#333;
 }
 
 </style>
@@ -97,43 +38,27 @@ color:#333;
 
 <div class="box">
 
-<h2>AI SCANNER 🤖</h2>
-<p>Auto detecting payment QR...</p>
-
-<div class="frame">
-
-<div class="corner tl"></div>
-<div class="corner tr"></div>
-<div class="corner bl"></div>
-<div class="corner br"></div>
-
+<h2>Scan QR</h2>
 <div id="reader"></div>
-
-</div>
 
 </div>
 
 <script>
 
-// AI scan success
-function onScanSuccess(decodedText){
+function onScanSuccess(decodedText, decodedResult){
 
-document.body.style.background = "#00c853";
+html5QrcodeScanner.clear();
 
-setTimeout(()=>{
 window.location.href = "successful.html";
-}, 800);
 
 }
 
-// start camera scanner
-let scanner = new Html5Qrcode("reader");
-
-scanner.start(
-{ facingMode: "environment" },
-{ fps: 10, qrbox: 220 },
-onScanSuccess
+let html5QrcodeScanner = new Html5QrcodeScanner(
+"reader",
+{ fps: 10, qrbox: 250 }
 );
+
+html5QrcodeScanner.render(onScanSuccess);
 
 </script>
 
