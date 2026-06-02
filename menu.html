@@ -36,6 +36,7 @@ font-family:'Playfair Display',serif;
 color:#f5e6d3;
 }
 
+/* GRID */
 .menu-container{
 display:flex;
 flex-wrap:wrap;
@@ -70,11 +71,10 @@ font-weight:bold;
 margin:8px 0;
 }
 
-/* QTY BUTTONS */
+/* QTY */
 .qty-box{
 display:flex;
 justify-content:center;
-align-items:center;
 gap:10px;
 margin-top:10px;
 }
@@ -92,17 +92,18 @@ button:hover{
 background:#3b241a;
 }
 
-/* VIEW CART */
-.view-cart{
+/* ACTION BUTTONS */
+.actions{
 text-align:center;
 padding:20px;
+display:flex;
+justify-content:center;
+gap:15px;
 }
 
-.view-cart button{
-padding:12px 25px;
-font-size:16px;
-background:#1f120d;
-border-radius:10px;
+.actions button{
+padding:12px 18px;
+font-size:15px;
 }
 
 </style>
@@ -116,43 +117,152 @@ border-radius:10px;
 
 <section class="menu-container">
 
-<!-- ESPRESSO -->
+<!-- 1 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600">
 <div class="card-content">
 <h3>Espresso</h3>
 <p class="price">₹120</p>
-
 <div class="qty-box">
 <button onclick="changeQty('Espresso',120,-1)">-</button>
 <span id="Espresso">0</span>
 <button onclick="changeQty('Espresso',120,1)">+</button>
 </div>
-
 </div>
 </div>
 
-<!-- CAPPUCCINO -->
+<!-- 2 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600">
 <div class="card-content">
 <h3>Cappuccino</h3>
 <p class="price">₹180</p>
-
 <div class="qty-box">
 <button onclick="changeQty('Cappuccino',180,-1)">-</button>
 <span id="Cappuccino">0</span>
 <button onclick="changeQty('Cappuccino',180,1)">+</button>
 </div>
+</div>
+</div>
 
+<!-- 3 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600">
+<div class="card-content">
+<h3>Americano</h3>
+<p class="price">₹150</p>
+<div class="qty-box">
+<button onclick="changeQty('Americano',150,-1)">-</button>
+<span id="Americano">0</span>
+<button onclick="changeQty('Americano',150,1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600">
+<div class="card-content">
+<h3>Mocha</h3>
+<p class="price">₹220</p>
+<div class="qty-box">
+<button onclick="changeQty('Mocha',220,-1)">-</button>
+<span id="Mocha">0</span>
+<button onclick="changeQty('Mocha',220,1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600">
+<div class="card-content">
+<h3>Latte</h3>
+<p class="price">₹200</p>
+<div class="qty-box">
+<button onclick="changeQty('Latte',200,-1)">-</button>
+<span id="Latte">0</span>
+<button onclick="changeQty('Latte',200,1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600">
+<div class="card-content">
+<h3>Cold Coffee</h3>
+<p class="price">₹190</p>
+<div class="qty-box">
+<button onclick="changeQty('ColdCoffee',190,-1)">-</button>
+<span id="ColdCoffee">0</span>
+<button onclick="changeQty('ColdCoffee',190,1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600">
+<div class="card-content">
+<h3>Caramel Latte</h3>
+<p class="price">₹240</p>
+<div class="qty-box">
+<button onclick="changeQty('CaramelLatte',240,-1)">-</button>
+<span id="CaramelLatte">0</span>
+<button onclick="changeQty('CaramelLatte',240,1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?w=600">
+<div class="card-content">
+<h3>Vanilla Latte</h3>
+<p class="price">₹230</p>
+<div class="qty-box">
+<button onclick="changeQty('VanillaLatte',230,-1)">-</button>
+<span id="VanillaLatte">0</span>
+<button onclick="changeQty('VanillaLatte',230,1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600">
+<div class="card-content">
+<h3>Irish Coffee</h3>
+<p class="price">₹260</p>
+<div class="qty-box">
+<button onclick="changeQty('IrishCoffee',260,-1)">-</button>
+<span id="IrishCoffee">0</span>
+<button onclick="changeQty('IrishCoffee',260,1)">+</button>
+</div>
+</div>
+</div>
+
+<!-- 10 -->
+<div class="card">
+<img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600">
+<div class="card-content">
+<h3>Hazelnut Coffee</h3>
+<p class="price">₹250</p>
+<div class="qty-box">
+<button onclick="changeQty('HazelnutCoffee',250,-1)">-</button>
+<span id="HazelnutCoffee">0</span>
+<button onclick="changeQty('HazelnutCoffee',250,1)">+</button>
+</div>
 </div>
 </div>
 
 </section>
 
-<!-- VIEW CART BUTTON -->
-<div class="view-cart">
+<!-- ACTION BUTTONS -->
+<div class="actions">
 <button onclick="viewCart()">🛒 View Cart</button>
+<button onclick="orderNow()">📦 Order Now</button>
 </div>
 
 <script>
@@ -162,22 +272,24 @@ let cart = {};
 function changeQty(name, price, change){
 
 if(!cart[name]){
-cart[name] = {price:price, qty:0};
+cart[name] = {price, qty:0};
 }
 
 cart[name].qty += change;
 
-if(cart[name].qty < 0){
-cart[name].qty = 0;
-}
+if(cart[name].qty < 0) cart[name].qty = 0;
 
 document.getElementById(name).innerText = cart[name].qty;
 }
 
 function viewCart(){
-
 localStorage.setItem("cart", JSON.stringify(cart));
 window.location.href = "cart.html";
+}
+
+function orderNow(){
+localStorage.setItem("cart", JSON.stringify(cart));
+window.location.href = "order.html";
 }
 
 </script>
