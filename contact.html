@@ -5,58 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact - Drip Cafe</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
 body{
-font-family:Arial,sans-serif;
-background:#f5f1ea;
-text-align:center;
-padding:50px;
+background:#4B2E2B;
+color:#F5E6D3;
 }
 
-.container{
-background:white;
-max-width:600px;
-margin:auto;
-padding:40px;
-border-radius:15px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 60px;
+background:#3E2723;
 }
 
-h1{
-margin-bottom:20px;
+.logo{
+font-size:48px;
+font-family:'Playfair Display',serif;
+font-weight:bold;
+color:#F5E6D3;
 }
 
-p{
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:#F5E6D3;
 font-size:18px;
+}
+
+.contact{
+text-align:center;
+padding:100px 20px;
+}
+
+.contact h1{
+font-size:60px;
+font-family:'Playfair Display',serif;
+margin-bottom:30px;
+}
+
+.contact p{
+font-size:22px;
 margin:15px 0;
 }
 
-a{
-text-decoration:none;
-color:black;
-font-weight:bold;
+footer{
+text-align:center;
+padding:25px;
+border-top:1px solid #8B6B4A;
+margin-top:80px;
 }
+
+@media(max-width:900px){
+
+header{
+flex-direction:column;
+gap:20px;
+}
+
+.contact h1{
+font-size:42px;
+}
+
+.contact p{
+font-size:18px;
+}
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
-<h1>📍 Contact Drip Cafe</h1>
+<header>
 
-<p><strong>Address:</strong><br>
-MG Road, Vijayawada, Andhra Pradesh, India</p>
+<div class="logo">☕ DRIP CAFE</div>
 
-<p><strong>Phone:</strong><br>
-+91 98765 43210</p>
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="menu.html">Menu</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
 
-<p><strong>Email:</strong><br>
-dripcafe@gmail.com</p>
+</header>
 
-<p>
-<a href="index.html">← Back to Home</a>
-</p>
-</div>
+<section class="contact">
+
+<h1>Contact Us 📍</h1>
+
+<p><strong>Drip Cafe</strong></p>
+
+<p>📍 MG Road, Vijayawada, Andhra Pradesh</p>
+
+<p>📞 +91 98765 43210</p>
+
+<p>✉️ dripcafe@gmail.com</p>
+
+<p>🕒 Open Daily: 8:00 AM – 10:00 PM</p>
+
+</section>
+
+<footer>
+© 2026 DRIP CAFE | Every Moment Has Its Flavour ☕
+</footer>
 
 </body>
 </html>
