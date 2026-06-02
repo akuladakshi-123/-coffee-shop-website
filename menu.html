@@ -37,7 +37,7 @@ font-family:'Playfair Display',serif;
 color:#f5e6d3;
 }
 
-/* MENU GRID */
+/* MENU */
 .menu-container{
 display:flex;
 flex-wrap:wrap;
@@ -94,27 +94,24 @@ button:hover{
 background:#3b241a;
 }
 
-/* ACTION BUTTONS */
+/* VIEW CART BUTTON */
 .actions{
 text-align:center;
 padding:20px;
-display:flex;
-justify-content:center;
-gap:15px;
-}
-
-.actions button{
-padding:12px 18px;
-font-size:15px;
-border-radius:10px;
 }
 
 .view{
+padding:12px 20px;
 background:#1f120d;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
 }
 
-.order{
-background:green;
+.view:hover{
+background:#000;
 }
 
 </style>
@@ -128,7 +125,7 @@ background:green;
 
 <section class="menu-container">
 
-<!-- 1 Espresso -->
+<!-- 1 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600">
 <div class="card-content">
@@ -142,7 +139,7 @@ background:green;
 </div>
 </div>
 
-<!-- 2 Cappuccino -->
+<!-- 2 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600">
 <div class="card-content">
@@ -156,7 +153,7 @@ background:green;
 </div>
 </div>
 
-<!-- 3 Americano -->
+<!-- 3 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600">
 <div class="card-content">
@@ -170,7 +167,7 @@ background:green;
 </div>
 </div>
 
-<!-- 4 Mocha -->
+<!-- 4 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600">
 <div class="card-content">
@@ -184,7 +181,7 @@ background:green;
 </div>
 </div>
 
-<!-- 5 Latte -->
+<!-- 5 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600">
 <div class="card-content">
@@ -198,7 +195,7 @@ background:green;
 </div>
 </div>
 
-<!-- 6 Cold Coffee -->
+<!-- 6 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600">
 <div class="card-content">
@@ -212,7 +209,7 @@ background:green;
 </div>
 </div>
 
-<!-- 7 Caramel Latte -->
+<!-- 7 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600">
 <div class="card-content">
@@ -226,7 +223,7 @@ background:green;
 </div>
 </div>
 
-<!-- 8 Vanilla Latte -->
+<!-- 8 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?w=600">
 <div class="card-content">
@@ -240,7 +237,7 @@ background:green;
 </div>
 </div>
 
-<!-- 9 Irish Coffee -->
+<!-- 9 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600">
 <div class="card-content">
@@ -254,7 +251,7 @@ background:green;
 </div>
 </div>
 
-<!-- 10 Hazelnut Coffee -->
+<!-- 10 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600">
 <div class="card-content">
@@ -270,10 +267,9 @@ background:green;
 
 </section>
 
-<!-- ACTION BUTTONS -->
+<!-- VIEW CART ONLY -->
 <div class="actions">
 <button class="view" onclick="viewCart()">🛒 View Cart</button>
-<button class="order" onclick="orderNow()">📦 Order Now</button>
 </div>
 
 <script>
@@ -296,11 +292,6 @@ document.getElementById(name).innerText = cart[name].qty;
 function viewCart(){
 localStorage.setItem("cart", JSON.stringify(cart));
 window.location.href = "cart.html";
-}
-
-function orderNow(){
-localStorage.setItem("cart", JSON.stringify(cart));
-window.location.href = "order.html";
 }
 
 </script>
