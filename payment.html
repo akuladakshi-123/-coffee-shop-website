@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scan</title>
+<title>Pay Bill</title>
 
-<script src="https://unpkg.com/html5-qrcode"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -21,14 +21,50 @@ height:100vh;
 
 .box{
 background:#f5e6d3;
-padding:20px;
-border-radius:15px;
+padding:25px;
+border-radius:18px;
 width:320px;
 text-align:center;
+color:#2b1b14;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
-#reader{
+h2{
+margin-bottom:5px;
+}
+
+.info{
+font-size:14px;
+margin:8px 0;
+}
+
+.amount{
+font-size:20px;
+font-weight:bold;
+margin:10px 0;
+}
+
+button{
 width:100%;
+padding:12px;
+margin-top:12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:15px;
+}
+
+.pay{
+background:green;
+color:white;
+}
+
+.pay:hover{
+background:darkgreen;
+}
+
+.cancel{
+background:#ddd;
 }
 
 </style>
@@ -38,27 +74,44 @@ width:100%;
 
 <div class="box">
 
-<h2>Scan QR</h2>
-<div id="reader"></div>
+<h2>💳 Pay Bill</h2>
+
+<p class="info">Complete your order payment</p>
+
+<div id="bill"></div>
+
+<button class="pay" onclick="paid()">Pay Now</button>
+<button class="cancel" onclick="goBack()">Back</button>
 
 </div>
 
 <script>
 
-function onScanSuccess(decodedText, decodedResult){
+// LOAD CART
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+let bill = document.getElementById("bill");
 
-html5QrcodeScanner.clear();
+let total = 0;
 
-window.location.href = "successful.html";
+for(let item in cart){
+let price = cart[item].price * cart[item].qty;
+total += price;
 
+bill.innerHTML += `<div>${item} x ${cart[item].qty} = ₹${price}</div>`;
 }
 
-let html5QrcodeScanner = new Html5QrcodeScanner(
-"reader",
-{ fps: 10, qrbox: 250 }
-);
+bill.innerHTML += `<div class="amount">Total: ₹${total}</div>`;
 
-html5QrcodeScanner.render(onScanSuccess);
+// PAYMENT DONE
+function paid(){
+localStorage.removeItem("cart");
+window.location.href = "successful.html";
+}
+
+// BACK
+function goBack(){
+window.location.href = "order.html";
+}
 
 </script>
 
