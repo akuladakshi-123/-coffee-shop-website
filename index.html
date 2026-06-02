@@ -1,169 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drip Cafe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffeea</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-    <style>
-        body{
-            margin:0;
-            font-family:Poppins;
-            background:#f7f1e8;
-        }
+body{
+background:#f2efe9;
+}
 
-        .hero{
-            background:linear-gradient(135deg,#3b2f2f,#6f4e37);
-            color:white;
-            text-align:center;
-            padding:70px 20px;
-        }
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:30px 80px;
+}
 
-        .hero h1{
-            margin:0;
-            font-size:40px;
-        }
+.logo{
+font-size:30px;
+font-weight:bold;
+}
 
-        .card{
-            background:white;
-            margin:12px auto;
-            padding:15px;
-            border-radius:12px;
-            max-width:420px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
-        }
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
 
-        img{
-            width:100%;
-            border-radius:12px;
-        }
+nav a{
+text-decoration:none;
+color:black;
+font-size:18px;
+}
 
-        button{
-            background:#3b2f2f;
-            color:white;
-            border:none;
-            padding:10px 12px;
-            border-radius:10px;
-            cursor:pointer;
-        }
+.signup{
+background:black;
+color:white;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
 
-        .qty{
-            margin:0 10px;
-            font-weight:bold;
-        }
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:80px;
+min-height:80vh;
+}
 
-        .cart-bar{
-            position:fixed;
-            bottom:0;
-            left:0;
-            width:100%;
-            background:#f7f1e8;
-            padding:10px;
-            box-shadow:0 -5px 15px rgba(0,0,0,0.1);
-            text-align:center;
-        }
+.content{
+max-width:600px;
+}
 
-        .cart-bar button{
-            width:90%;
-        }
+.content h1{
+font-size:70px;
+line-height:1.1;
+margin-bottom:20px;
+}
 
-        #toast{
-            position:fixed;
-            bottom:80px;
-            left:50%;
-            transform:translateX(-50%);
-            background:#3b2f2f;
-            color:white;
-            padding:10px 15px;
-            border-radius:10px;
-            opacity:0;
-            transition:0.3s;
-        }
-    </style>
+.content p{
+font-size:22px;
+color:#444;
+margin-bottom:20px;
+}
+
+.order{
+background:black;
+color:white;
+padding:15px 40px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+}
+
+.image img{
+width:450px;
+}
+
+footer{
+padding:20px 80px;
+}
+
+hr{
+margin-top:40px;
+margin-bottom:20px;
+}
+
+@media(max-width:900px){
+
+header{
+flex-direction:column;
+gap:20px;
+}
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.content h1{
+font-size:45px;
+}
+
+.image img{
+width:300px;
+margin-top:30px;
+}
+}
+</style>
 </head>
 
 <body>
 
-<div class="hero">
-    <h1>☕ DRIP CAFE</h1>
-    <p>Fresh Coffee • Cozy Vibes</p>
+<header>
+<div class="logo">☕ coffeea</div>
+
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Menu</a></li>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
+
+<button class="signup">Sign Up</button>
+</header>
+
+<section class="hero">
+
+<div class="content">
+<h1>Brewed with Love.<br>Served with Warmth.</h1>
+
+<p>
+Discover hand-crafted coffee made with locally sourced beans and heart.
+</p>
+
+<p>⭐ 4.9 stars from 500+ reviews</p>
+
+<button class="order">Order Now</button>
 </div>
 
-<div class="card">
-    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800">
-    <h3>Espresso</h3>
-    <p>₹120</p>
-    <button onclick="add('Espresso',120)">+</button>
-    <span class="qty" id="EspressoQty">0</span>
-    <button onclick="remove('Espresso')">-</button>
+<div class="image">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800" alt="Coffee">
 </div>
 
-<div class="card">
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800">
-    <h3>Cappuccino</h3>
-    <p>₹150</p>
-    <button onclick="add('Cappuccino',150)">+</button>
-    <span class="qty" id="CappuccinoQty">0</span>
-    <button onclick="remove('Cappuccino')">-</button>
-</div>
+</section>
 
-<div class="card">
-    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800">
-    <h3>Latte</h3>
-    <p>₹180</p>
-    <button onclick="add('Latte',180)">+</button>
-    <span class="qty" id="LatteQty">0</span>
-    <button onclick="remove('Latte')">-</button>
-</div>
-
-<!-- CART BUTTON -->
-<div class="cart-bar">
-    <a href="cart.html" style="text-decoration:none;">
-        <button type="button">Go to Cart 🛒</button>
-    </a>
-</div>
-
-<div id="toast"></div>
-
-<script>
-let cart = JSON.parse(localStorage.getItem("cart")) || {};
-
-function add(name, price){
-    if(!cart[name]){
-        cart[name] = {price:price, qty:0};
-    }
-
-    cart[name].qty++;
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    document.getElementById(name+"Qty").innerText = cart[name].qty;
-
-    showToast(name + " added ☕");
-}
-
-function remove(name){
-    if(!cart[name]) return;
-
-    if(cart[name].qty > 0){
-        cart[name].qty--;
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    document.getElementById(name+"Qty").innerText = cart[name].qty;
-}
-
-function showToast(msg){
-    let t = document.getElementById("toast");
-    t.innerText = msg;
-    t.style.opacity = "1";
-
-    setTimeout(()=>{
-        t.style.opacity = "0";
-    },1200);
-}
-</script>
+<footer>
+<hr>
+<p>Follow us on Instagram • Twitter • Facebook</p>
+</footer>
 
 </body>
 </html>
