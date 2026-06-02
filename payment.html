@@ -23,13 +23,17 @@ height:100vh;
 background:#f5e6d3;
 padding:25px;
 border-radius:18px;
-width:320px;
+width:330px;
 text-align:center;
 color:#2b1b14;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* FAKE SCANNER BOX */
+h2{
+margin-bottom:5px;
+}
+
+/* SCANNER BOX */
 .scanner{
 width:220px;
 height:220px;
@@ -38,17 +42,17 @@ border:3px solid #2b1b14;
 border-radius:15px;
 position:relative;
 overflow:hidden;
-background:white;
+background:#fff;
 }
 
-/* moving scan line */
+/* MOVING SCAN LINE */
 .scanner::before{
 content:"";
 position:absolute;
 width:100%;
 height:4px;
 background:#00ff66;
-animation:scan 1.5s linear infinite;
+animation:scan 1.6s linear infinite;
 }
 
 @keyframes scan{
@@ -56,10 +60,24 @@ animation:scan 1.5s linear infinite;
 100%{top:100%;}
 }
 
-/* blinking dots */
-.dots{
+/* CORNERS */
+.corner{
+position:absolute;
+width:25px;
+height:25px;
+border:3px solid #00ff66;
+}
+
+.tl{top:0;left:0;border-right:none;border-bottom:none;}
+.tr{top:0;right:0;border-left:none;border-bottom:none;}
+.bl{bottom:0;left:0;border-right:none;border-top:none;}
+.br{bottom:0;right:0;border-left:none;border-top:none;}
+
+/* TEXT */
+.status{
 margin-top:10px;
 font-size:14px;
+color:#333;
 }
 
 button{
@@ -88,12 +106,17 @@ background:darkgreen;
 
 <div class="box">
 
-<h2>🔍 Scanning Payment</h2>
-<p>Do not close app</p>
+<h2>🔍 Scan & Pay</h2>
+<p class="status" id="status">Scanning payment...</p>
 
-<div class="scanner"></div>
+<div class="scanner">
 
-<div class="dots" id="dots">Processing</div>
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
+
+</div>
 
 <button class="pay" onclick="done()">I Have Paid</button>
 
@@ -101,15 +124,15 @@ background:darkgreen;
 
 <script>
 
-// DOT ANIMATION
-let dot = 0;
+// ANIMATED TEXT
+let i = 0;
 setInterval(()=>{
-let d = ["Processing", "Processing.", "Processing..", "Processing..."];
-document.getElementById("dots").innerText = d[dot];
-dot = (dot + 1) % d.length;
-}, 500);
+let text = ["Scanning payment...", "Verifying...", "Connecting bank...", "Ready to pay"];
+document.getElementById("status").innerText = text[i];
+i = (i + 1) % text.length;
+}, 1000);
 
-// AFTER PAYMENT
+// SUCCESS
 function done(){
 localStorage.removeItem("cart");
 window.location.href = "successful.html";
