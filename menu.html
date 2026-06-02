@@ -269,7 +269,7 @@ background:#000;
 
 <!-- VIEW CART ONLY -->
 <div class="actions">
-<button class="view" onclick="viewCart()">🛒 View Cart</button>
+<button class="view" onclick="goSummary()">🧾 Order Summary</button>
 </div>
 
 <script>
@@ -289,9 +289,9 @@ if(cart[name].qty < 0) cart[name].qty = 0;
 document.getElementById(name).innerText = cart[name].qty;
 }
 
-function viewCart(){
+function goSummary(){
 localStorage.setItem("cart", JSON.stringify(cart));
-window.location.href = "cart.html";
+window.location.href = "order.html";
 }
 
 </script>
