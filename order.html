@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Order Summary</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:#f5e6d3;
+padding:30px;
+border-radius:15px;
+width:320px;
+color:#2b1b14;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+h2{
+text-align:center;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+margin:5px 0;
+font-size:14px;
+}
+
+.total{
+font-weight:bold;
+margin-top:10px;
+text-align:right;
+}
+
+button{
+width:100%;
+margin-top:15px;
+padding:12px;
+border:none;
+border-radius:10px;
+background:green;
+color:white;
+font-size:15px;
+cursor:pointer;
+}
+
+button:hover{
+background:darkgreen;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Order Summary</h2>
+
+<div id="items"></div>
+
+<button onclick="pay()">Pay Now</button>
+
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+let itemsDiv = document.getElementById("items");
+
+let total = 0;
+
+for(let item in cart){
+let price = cart[item].price * cart[item].qty;
+total += price;
+
+itemsDiv.innerHTML += `
+<div class="item">
+<span>${item} x ${cart[item].qty}</span>
+<span>₹${price}</span>
+</div>
+`;
+}
+
+itemsDiv.innerHTML += `<hr><div class="total">Total: ₹${total}</div>`;
+
+// NEXT STEP → PAYMENT
+function pay(){
+window.location.href = "payment.html";
+}
+
+</script>
+
+</body>
+</html>
