@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay Bill</title>
+<title>Payment</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -24,26 +24,40 @@ background:#f5e6d3;
 padding:30px;
 border-radius:15px;
 text-align:center;
-color:#2b1b14;
-width:300px;
+width:320px;
 box-shadow:0 8px 20px rgba(0,0,0,0.4);
+color:#2b1b14;
+}
+
+h2{
+margin-bottom:10px;
 }
 
 img{
-width:200px;
+width:220px;
+margin:15px 0;
 border-radius:10px;
-margin-top:15px;
 }
 
 button{
-margin-top:20px;
-padding:12px;
 width:100%;
+padding:12px;
 border:none;
 border-radius:10px;
 background:green;
 color:white;
 cursor:pointer;
+font-size:15px;
+}
+
+button:hover{
+background:darkgreen;
+}
+
+.summary{
+text-align:left;
+margin-top:10px;
+font-size:14px;
 }
 
 </style>
@@ -54,10 +68,11 @@ cursor:pointer;
 <div class="box">
 
 <h2>Scan & Pay ☕</h2>
-<p>Use any UPI app</p>
 
-<!-- SAMPLE QR (you can replace later with your UPI QR) -->
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi-payment-demo" alt="QR Code">
+<div class="summary" id="summary"></div>
+
+<!-- QR CODE -->
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi-payment-demo" />
 
 <button onclick="paid()">I Have Paid</button>
 
@@ -65,7 +80,24 @@ cursor:pointer;
 
 <script>
 
+// SHOW CART SUMMARY
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+let summary = document.getElementById("summary");
+
+let total = 0;
+
+for(let item in cart){
+let t = cart[item].price * cart[item].qty;
+total += t;
+
+summary.innerHTML += `<p>${item} x ${cart[item].qty} = ₹${t}</p>`;
+}
+
+summary.innerHTML += `<hr><b>Total: ₹${total}</b>`;
+
+// AFTER PAYMENT
 function paid(){
+localStorage.removeItem("cart");
 window.location.href = "successful.html";
 }
 
