@@ -48,6 +48,16 @@ text-decoration:none;
 color:#f5e6d3;
 }
 
+/* TITLE */
+.menu-title{
+text-align:center;
+padding:30px;
+}
+
+.menu-title h1{
+font-size:50px;
+}
+
 /* MENU */
 .menu-container{
 display:flex;
@@ -83,7 +93,7 @@ font-weight:bold;
 margin:10px 0;
 }
 
-/* QTY BUTTONS */
+/* QTY */
 .qty-box{
 display:flex;
 justify-content:center;
@@ -110,6 +120,19 @@ font-weight:bold;
 font-size:18px;
 }
 
+/* CART BUTTON */
+.cart-btn{
+text-align:center;
+padding:30px;
+}
+
+.cart-btn button{
+padding:12px 25px;
+font-size:16px;
+border-radius:10px;
+background:#1f120d;
+}
+
 </style>
 </head>
 
@@ -120,46 +143,103 @@ font-size:18px;
 <nav>
 <ul>
 <li><a href="#">Home</a></li>
-<li><a href="#" onclick="goToCart()">Cart 🛒</a></li>
+<li><a href="#">Menu</a></li>
 </ul>
 </nav>
 </header>
 
+<section class="menu-title">
+<h1>Our Menu ☕</h1>
+</section>
+
 <section class="menu-container">
 
-<!-- ESPRESSO -->
+<!-- 10 ITEMS -->
+
 <div class="card">
 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600">
 <div class="card-content">
 <h3>Espresso</h3>
 <p class="price">₹120</p>
-
 <div class="qty-box">
 <button onclick="changeQty('Espresso',120,-1)">-</button>
 <span id="Espresso">0</span>
 <button onclick="changeQty('Espresso',120,1)">+</button>
 </div>
-
 </div>
 </div>
 
-<!-- CAPPUCCINO -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600">
 <div class="card-content">
 <h3>Cappuccino</h3>
 <p class="price">₹180</p>
-
 <div class="qty-box">
 <button onclick="changeQty('Cappuccino',180,-1)">-</button>
 <span id="Cappuccino">0</span>
 <button onclick="changeQty('Cappuccino',180,1)">+</button>
 </div>
+</div>
+</div>
 
+<div class="card">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600">
+<div class="card-content">
+<h3>Americano</h3>
+<p class="price">₹150</p>
+<div class="qty-box">
+<button onclick="changeQty('Americano',150,-1)">-</button>
+<span id="Americano">0</span>
+<button onclick="changeQty('Americano',150,1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600">
+<div class="card-content">
+<h3>Mocha</h3>
+<p class="price">₹220</p>
+<div class="qty-box">
+<button onclick="changeQty('Mocha',220,-1)">-</button>
+<span id="Mocha">0</span>
+<button onclick="changeQty('Mocha',220,1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600">
+<div class="card-content">
+<h3>Latte</h3>
+<p class="price">₹200</p>
+<div class="qty-box">
+<button onclick="changeQty('Latte',200,-1)">-</button>
+<span id="Latte">0</span>
+<button onclick="changeQty('Latte',200,1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600">
+<div class="card-content">
+<h3>Cold Coffee</h3>
+<p class="price">₹190</p>
+<div class="qty-box">
+<button onclick="changeQty('ColdCoffee',190,-1)">-</button>
+<span id="ColdCoffee">0</span>
+<button onclick="changeQty('ColdCoffee',190,1)">+</button>
+</div>
 </div>
 </div>
 
 </section>
+
+<!-- CART BUTTON -->
+<div class="cart-btn">
+<button onclick="goToCart()">🛒 Go to Cart</button>
+</div>
 
 <script>
 
