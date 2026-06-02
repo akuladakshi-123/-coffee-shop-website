@@ -1,74 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <title>Order Confirmed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Page - Drip Cafe</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #3b2f2f, #6f4e37);
-            color: white; 
-            text-align: center;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-        .box {
-            margin-top: 120px;
-            padding: 20px;
-        }
+<style>
 
-        h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-        .card {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            margin: 20px auto;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
+body{
+min-height:100vh;
+background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+color:#fff;
+}
 
-        button {
-            margin-top: 20px;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            background: #c8a97e;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
-        }
+/* HEADER */
+header{
+text-align:center;
+padding:20px;
+font-family:'Playfair Display',serif;
+font-size:28px;
+color:#f5e6d3;
+}
 
-        button:hover {
-            transform: scale(1.05);
-        }
-    </style>
+/* BOX */
+.box{
+max-width:600px;
+margin:30px auto;
+background:#f5e6d3;
+color:#2b1b14;
+padding:20px;
+border-radius:15px;
+box-shadow:0 6px 15px rgba(0,0,0,0.4);
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+
+.total{
+text-align:right;
+font-size:20px;
+font-weight:bold;
+margin-top:15px;
+}
+
+/* BUTTON */
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#2b1b14;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1a0f0b;
+}
+
+.empty{
+text-align:center;
+padding:20px;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="box">
+<header>
+☕ Drip Cafe Order
+</header>
 
-    <h1>🎉 Thank You!</h1>
-    <p>Your order has been placed successfully ☕</p>
+<div class="box" id="orderBox"></div>
 
-    <div class="card">
-        <h2>☕ Drip cafe</h2>
-        <p>Order Status: Preparing...</p>
-        <p>Estimated Time: 5–10 mins</p>
-    </div>
+<script>
 
-    <button onclick="window.location.href='index.html'">
-        Back to Menu
-    </button>
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
+let box = document.getElementById("orderBox");
+
+let total = 0;
+let hasItems = false;
+
+for(let item in cart){
+
+if(cart[item].qty > 0){
+
+hasItems = true;
+
+let itemTotal = cart[item].price * cart[item].qty;
+total += itemTotal;
+
+box.innerHTML += `
+<div class="item">
+<span>${item} x ${cart[item].qty}</span>
+<span>₹${itemTotal}</span>
 </div>
+`;
+}
+}
+
+if(!hasItems){
+box.innerHTML = "<div class='empty'>Your cart is empty ☕</div>";
+}
+else{
+box.innerHTML += `
+<div class="total">Total: ₹${total}</div>
+<button onclick="placeOrder()">Place Order</button>
+`;
+}
+
+function placeOrder(){
+alert("🎉 Order placed successfully! Thank you ☕");
+
+localStorage.removeItem("cart");
+
+window.location.href = "menu.html";
+}
+
+</script>
 
 </body>
 </html>
