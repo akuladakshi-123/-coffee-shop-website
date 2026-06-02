@@ -18,24 +18,23 @@ font-family:'Poppins',sans-serif;
 
 body{
 min-height:100vh;
-margin:0;
 background: linear-gradient(135deg, #2b1b14, #5a3a2b);
 color:#fff;
 }
 
+/* HEADER */
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:25px 50px;
-background:white;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
+background:#2b1b14;
 }
 
 .logo{
 font-size:30px;
 font-family:'Playfair Display',serif;
-font-weight:bold;
+color:#f5e6d3;
 }
 
 nav ul{
@@ -46,44 +45,47 @@ gap:25px;
 
 nav a{
 text-decoration:none;
-color:black;
+color:#f5e6d3;
 font-weight:500;
 }
 
+nav a:hover{
+color:#d9a86c;
+}
+
+/* TITLE */
 .menu-title{
 text-align:center;
-padding:50px 20px;
+padding:40px 20px;
 }
 
 .menu-title h1{
-font-size:55px;
+font-size:50px;
 font-family:'Playfair Display',serif;
 }
 
 .menu-title p{
+color:#e6d3c2;
 margin-top:10px;
-color:#666;
 }
 
+/* MENU GRID */
 .menu-container{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:30px;
-padding:20px 40px 60px;
+gap:25px;
+padding:20px;
 }
 
+/* CARD */
 .card{
 background:#f5e6d3;
 color:#2b1b14;
+width:260px;
 border-radius:15px;
 overflow:hidden;
 box-shadow:0 6px 15px rgba(0,0,0,0.4);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
 }
 
 .card img{
@@ -97,19 +99,31 @@ padding:15px;
 text-align:center;
 }
 
-.card-content h3{
-margin-bottom:10px;
-}
-
 .price{
 font-weight:bold;
-font-size:18px;
+margin:10px 0;
 }
 
+/* BUTTONS */
+button{
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#5a3a2b;
+color:white;
+cursor:pointer;
+margin:3px;
+}
+
+button:hover{
+background:#3b241a;
+}
+
+/* FOOTER */
 footer{
 text-align:center;
-padding:25px;
-border-top:1px solid #ddd;
+padding:20px;
+color:#f5e6d3;
 }
 
 </style>
@@ -124,103 +138,88 @@ border-top:1px solid #ddd;
 <ul>
 <li><a href="index.html">Home</a></li>
 <li><a href="menu.html">Menu</a></li>
-<li><a href="contact.html">Contact</a></li>
+<li><a href="#" onclick="goToCart()">Cart 🛒</a></li>
 </ul>
 </nav>
 </header>
 
 <section class="menu-title">
 <h1>Our Menu ☕</h1>
-<p>Freshly brewed coffee for every moment.</p>
+<p>Fresh brewed happiness</p>
 </section>
 
 <section class="menu-container">
 
+<!-- CARD 1 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600">
 <div class="card-content">
 <h3>Espresso</h3>
 <p class="price">₹120</p>
+<button onclick="addToCart('Espresso',120,1)">Add 1</button>
+<button onclick="addToCart('Espresso',120,2)">Add 2</button>
 </div>
 </div>
 
+<!-- CARD 2 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600">
 <div class="card-content">
 <h3>Cappuccino</h3>
 <p class="price">₹180</p>
+<button onclick="addToCart('Cappuccino',180,1)">Add 1</button>
+<button onclick="addToCart('Cappuccino',180,2)">Add 2</button>
 </div>
 </div>
 
+<!-- CARD 3 -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600">
 <div class="card-content">
 <h3>Americano</h3>
 <p class="price">₹150</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600">
-<div class="card-content">
-<h3>Mocha</h3>
-<p class="price">₹220</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=600" alt="Latte">
-<div class="card-content">
-<h3>Latte</h3>
-<p class="price">₹200</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=600">
-<div class="card-content">
-<h3>Cold Coffee</h3>
-<p class="price">₹190</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600">
-<div class="card-content">
-<h3>Caramel Latte</h3>
-<p class="price">₹240</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?w=600">
-<div class="card-content">
-<h3>Vanilla Latte</h3>
-<p class="price">₹230</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600">
-<div class="card-content">
-<h3>Irish Coffee</h3>
-<p class="price">₹260</p>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600">
-<div class="card-content">
-<h3>Hazelnut Coffee</h3>
-<p class="price">₹250</p>
+<button onclick="addToCart('Americano',150,1)">Add 1</button>
+<button onclick="addToCart('Americano',150,2)">Add 2</button>
 </div>
 </div>
 
 </section>
 
 <footer>
-© 2026 Drip Cafe | Every Moment Has Its Flavour ☕
+© 2026 Drip Cafe | Coffee with love ☕
 </footer>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price, qty){
+cart.push({name, price, qty});
+alert(qty + " " + name + " added ☕");
+}
+
+function goToCart(){
+
+if(cart.length === 0){
+alert("Cart is empty 🛒");
+return;
+}
+
+let total = 0;
+let msg = "Your Cart:\n\n";
+
+cart.forEach(item=>{
+let itemTotal = item.price * item.qty;
+msg += item.name + " x " + item.qty + " = ₹" + itemTotal + "\n";
+total += itemTotal;
+});
+
+msg += "\nTotal: ₹" + total;
+
+alert(msg);
+}
+
+</script>
 
 </body>
 </html>
