@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay Bill</title>
+<title>Scan & Pay</title>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -21,38 +23,45 @@ height:100vh;
 
 .box{
 background:#f5e6d3;
-padding:30px;
+padding:20px;
 border-radius:18px;
-width:320px;
+width:340px;
 text-align:center;
 color:#2b1b14;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 h2{
-margin-bottom:10px;
+margin-bottom:5px;
 }
 
-/* SCANNER ANIMATION BOX */
-.scanner{
-width:220px;
-height:220px;
+/* SCANNER FRAME */
+.scanner-frame{
+position:relative;
+width:280px;
+height:280px;
 margin:15px auto;
 border:3px solid #2b1b14;
 border-radius:15px;
-position:relative;
 overflow:hidden;
-background:#fff;
+background:#000;
 }
 
-/* moving scan line */
-.scanner::before{
+/* CAMERA AREA */
+#reader{
+width:100%;
+height:100%;
+}
+
+/* GREEN SCAN LINE ANIMATION */
+.scanner-frame::before{
 content:"";
 position:absolute;
 width:100%;
 height:4px;
 background:#2ecc71;
 animation:scan 2s linear infinite;
+z-index:2;
 }
 
 @keyframes scan{
@@ -60,32 +69,22 @@ animation:scan 2s linear infinite;
 100%{top:100%;}
 }
 
-.summary{
-text-align:left;
+/* CORNER EFFECTS */
+.corner{
+position:absolute;
+width:30px;
+height:30px;
+border:3px solid #2ecc71;
+}
+
+.tl{top:0;left:0;border-right:none;border-bottom:none;}
+.tr{top:0;right:0;border-left:none;border-bottom:none;}
+.bl{bottom:0;left:0;border-right:none;border-top:none;}
+.br{bottom:0;right:0;border-left:none;border-top:none;}
+
+p{
 font-size:14px;
-margin-top:10px;
-}
-
-.total{
-font-weight:bold;
-margin-top:10px;
-text-align:right;
-}
-
-button{
-width:100%;
-margin-top:15px;
-padding:12px;
-border:none;
-border-radius:10px;
-background:green;
-color:white;
-font-size:15px;
-cursor:pointer;
-}
-
-button:hover{
-background:darkgreen;
+margin:5px 0;
 }
 
 </style>
@@ -95,38 +94,42 @@ background:darkgreen;
 
 <div class="box">
 
-<h2>Scanning Payment ☕</h2>
+<h2>Scan & Pay ☕</h2>
+<p>Align QR inside box</p>
 
-<div class="scanner"></div>
+<div class="scanner-frame">
 
-<div class="summary" id="summary"></div>
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
 
-<button onclick="paid()">I Have Paid</button>
+<div id="reader"></div>
+
+</div>
 
 </div>
 
 <script>
 
-// LOAD CART
-let cart = JSON.parse(localStorage.getItem("cart")) || {};
-let summary = document.getElementById("summary");
+function onScanSuccess(decodedText) {
 
-let total = 0;
+// success animation
+document.body.style.background = "#1b5e20";
 
-for(let item in cart){
-let t = cart[item].price * cart[item].qty;
-total += t;
-
-summary.innerHTML += `<div>${item} x ${cart[item].qty} = ₹${t}</div>`;
-}
-
-summary.innerHTML += `<div class="total">Total: ₹${total}</div>`;
-
-// PAYMENT DONE
-function paid(){
-localStorage.removeItem("cart");
+setTimeout(()=>{
 window.location.href = "successful.html";
+}, 1000);
+
 }
+
+let scanner = new Html5Qrcode("reader");
+
+scanner.start(
+{ facingMode: "environment" },
+{ fps: 10, qrbox: 220 },
+onScanSuccess
+);
 
 </script>
 
