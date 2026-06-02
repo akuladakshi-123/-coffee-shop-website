@@ -5,149 +5,174 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Drip Cafe</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
 }
 
 body{
-    background:#efede7;
-    font-family:'Poppins',sans-serif;
-    overflow-x:hidden;
+background:#f5f1ea;
+font-family:'Poppins',sans-serif;
 }
 
 header{
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    padding:30px 80px;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:25px 50px;
+background:#f5f1ea;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
 .logo{
-    font-size:32px;
-    font-weight:700;
-    font-family:'Playfair Display',serif;
+font-size:32px;
+font-weight:bold;
+font-family:'Playfair Display',serif;
 }
 
 nav ul{
-    display:flex;
-    list-style:none;
-    gap:35px;
+display:flex;
+list-style:none;
+gap:30px;
 }
 
 nav a{
-    text-decoration:none;
-    color:#111;
-    font-size:18px;
-    font-weight:500;
-}
-
-nav a:hover{
-    border-bottom:2px solid #111;
+text-decoration:none;
+color:black;
+font-weight:500;
 }
 
 .hero{
-    min-height:80vh;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:50px 80px;
+min-height:90vh;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:50px 80px;
 }
 
 .content{
-    max-width:650px;
+max-width:600px;
 }
 
 .content h1{
-    font-family:'Playfair Display',serif;
-    font-size:78px;
-    line-height:1.1;
-    color:#111;
+font-size:75px;
+line-height:1.1;
+font-family:'Playfair Display',serif;
 }
 
 .content p{
-    margin-top:25px;
-    font-size:22px;
-    color:#444;
-    line-height:1.6;
+margin-top:20px;
+font-size:22px;
+color:#555;
 }
 
 .rating{
-    margin-top:25px;
-    color:#666;
-    font-size:17px;
+margin-top:20px;
+color:#666;
 }
 
 .order-btn{
-    margin-top:30px;
-    background:#000;
-    color:#fff;
-    border:none;
-    padding:15px 45px;
-    border-radius:30px;
-    font-size:18px;
-    cursor:pointer;
-    transition:0.3s;
+margin-top:25px;
+padding:15px 40px;
+background:black;
+color:white;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
 }
 
 .order-btn:hover{
-    transform:translateY(-3px);
+transform:scale(1.05);
 }
 
 .image img{
-    width:500px;
-    max-width:100%;
+width:500px;
+border-radius:20px;
+}
+
+#menu{
+padding:80px 40px;
+text-align:center;
+}
+
+#menu h2{
+font-size:50px;
+margin-bottom:50px;
+font-family:'Playfair Display',serif;
+}
+
+.menu-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+}
+
+.card{
+background:white;
+width:250px;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin-top:15px;
+}
+
+.card p{
+margin-top:10px;
+color:#666;
 }
 
 footer{
-    padding:20px 80px;
-}
-
-.line{
-    width:100%;
-    height:1px;
-    background:#777;
-    margin-bottom:20px;
-}
-
-.social{
-    display:flex;
-    gap:20px;
-    color:#444;
+text-align:center;
+padding:30px;
+margin-top:40px;
+border-top:1px solid #ccc;
 }
 
 @media(max-width:900px){
 
-header{
-    flex-direction:column;
-    gap:20px;
-}
-
-nav ul{
-    gap:20px;
-}
-
 .hero{
-    flex-direction:column;
-    text-align:center;
+flex-direction:column;
+text-align:center;
 }
 
 .content h1{
-    font-size:50px;
-}
-
-.image{
-    margin-top:40px;
+font-size:50px;
 }
 
 .image img{
-    width:320px;
+width:300px;
+margin-top:30px;
 }
+
+header{
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+gap:15px;
+}
+
 }
 
 </style>
@@ -162,7 +187,7 @@ nav ul{
 <nav>
 <ul>
 <li><a href="#">Home</a></li>
-<li><a href="#">Menu</a></li>
+<li><a href="#menu">Menu</a></li>
 <li><a href="#">About Us</a></li>
 <li><a href="#">Contact</a></li>
 </ul>
@@ -177,11 +202,12 @@ nav ul{
 <h1>Every Moment<br>Has Its Flavour.</h1>
 
 <p>
-Discover hand-crafted coffee, made with locally sourced beans and passion. Enjoy every sip, every conversation, and every moment at Drip Cafe.
+Discover hand-crafted coffee made with passion and premium beans.
+Experience warmth, aroma and unforgettable taste at Drip Cafe.
 </p>
 
 <div class="rating">
-⭐ 4.9 stars from 500+ reviews
+⭐ 4.9 Stars from 500+ Reviews
 </div>
 
 <button class="order-btn">Order Now</button>
@@ -194,16 +220,42 @@ Discover hand-crafted coffee, made with locally sourced beans and passion. Enjoy
 
 </section>
 
-<footer>
+<section id="menu">
 
-<div class="line"></div>
+<h2>Our Menu ☕</h2>
 
-<div class="social">
-<span>Instagram</span>
-<span>Twitter</span>
-<span>Facebook</span>
+<div class="menu-container">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400">
+<h3>Espresso</h3>
+<p>₹120</p>
 </div>
 
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400">
+<h3>Cappuccino</h3>
+<p>₹180</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400">
+<h3>Mocha</h3>
+<p>₹220</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1521302080371-df3f0eebf5f9?w=400">
+<h3>Latte</h3>
+<p>₹200</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Drip Cafe | Every Moment Has Its Flavour ☕</p>
 </footer>
 
 </body>
