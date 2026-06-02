@@ -1,94 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <title>Order Confirmed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Successful</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
- 
-    <style>
-        body{
-            margin:0;
-            font-family:Poppins;
-            background:#f7f1e8;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            height:100vh;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-        .box{
-            background:white;
-            width:320px;
-            padding:30px;
-            border-radius:16px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.12);
-            text-align:center;
-            animation: fade 0.5s ease;
-        }
+<style>
 
-        @keyframes fade{
-            from{opacity:0; transform:scale(0.9);}
-            to{opacity:1; transform:scale(1);}
-        }
+body{
+margin:0;
+font-family:Poppins;
+background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:#fff;
+}
 
-        h1{
-            color:#3b2f2f;
-            margin-bottom:10px;
-        }
+.box{
+text-align:center;
+background:#f5e6d3;
+color:#2b1b14;
+padding:40px;
+border-radius:15px;
+box-shadow:0 6px 15px rgba(0,0,0,0.4);
+}
 
-        .eta{
-            font-size:16px;
-            color:#6f4e37;
-            margin:15px 0;
-        }
+h1{
+font-family:'Playfair Display',serif;
+font-size:40px;
+margin-bottom:10px;
+}
 
-        .time-box{
-            background:#f7f1e8;
-            padding:15px;
-            border-radius:12px;
-            font-size:18px;
-            font-weight:bold;
-            color:#3b2f2f;
-        }
+p{
+margin:10px 0;
+}
 
-        button{
-            margin-top:20px;
-            width:100%;
-            padding:10px;
-            border:none;
-            border-radius:10px;
-            background:#3b2f2f;
-            color:white;
-            cursor:pointer;
-        }
+button{
+margin-top:20px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#2b1b14;
+color:white;
+cursor:pointer;
+}
 
-        button:hover{
-            background:#6f4e37;
-        }
-    </style>
+button:hover{
+background:#1a0f0b;
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="box">
+<h1>🎉 Order Successful!</h1>
+<p>Thank you for ordering from Drip Cafe ☕</p>
+<p>Your coffee is being prepared...</p>
 
-    <h1>☕ Order Confirmed</h1>
-
-    <div class="eta">Estimated Time</div>
-
-    <div class="time-box">
-        8 – 12 minutes
-    </div>
-
-    <button onclick="home()">Back to Home</button>
-
+<button onclick="goHome()">Back to Menu</button>
 </div>
 
 <script>
-function home(){
-    window.location.href = "index.html";
+function goHome(){
+window.location.href = "menu.html";
 }
 </script>
 
