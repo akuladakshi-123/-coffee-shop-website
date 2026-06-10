@@ -1,44 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Contact Us</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Drip Cafe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
 body{
-font-family:Poppins,sans-serif;
-background:#4B2E2B;
-color:white;
+background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.contact-box{
+background:#f5e6d3;
+width:100%;
+max-width:550px;
+padding:40px;
+border-radius:20px;
 text-align:center;
-padding:50px;
+box-shadow:0 10px 30px rgba(0,0,0,0.35);
 }
 
-.box{
-background:#6F4E37;
-padding:30px;
-border-radius:15px;
-max-width:500px;
-margin:auto;
+h1{
+font-family:'Playfair Display',serif;
+color:#2b1b14;
+margin-bottom:20px;
+font-size:42px;
 }
 
-a{
-color:#F5E6D3;
+.info{
+color:#4a3528;
+font-size:16px;
+line-height:2;
+margin-bottom:30px;
+}
+
+.back-btn{
+display:inline-block;
+padding:14px 30px;
+background:#2b1b14;
+color:white;
 text-decoration:none;
+border-radius:30px;
+font-weight:500;
+transition:0.3s;
+box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
+
+.back-btn:hover{
+transform:translateY(-3px);
+background:#1c120d;
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="box">
+<div class="contact-box">
+
 <h1>☕ Contact Drip Cafe</h1>
 
-<p>📧 Email: dripcafe@email.com</p>
+<div class="info">
+<p>📧 dripcafe@gmail.com</p>
+<p>📞 +91 98765 43210</p>
+<p>📍 Guntur, Andhra Pradesh, India</p>
+<p>🕒 Open Daily: 8:00 AM - 10:00 PM</p>
+</div>
 
-<p>📞 Phone: +91 98765 43210</p>
+<a href="index.html" class="back-btn">
+🏠 Back to Home
+</a>
 
-<p>📍 Location: Andhra Pradesh, India</p>
-
-<br>
-
-<a href="index.html">🏠 Back to Home</a>
 </div>
 
 </body>
