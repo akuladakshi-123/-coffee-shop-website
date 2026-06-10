@@ -20,6 +20,7 @@ body{
 min-height:100vh;
 background:linear-gradient(135deg,#2b1b14,#5a3a2b);
 color:#fff;
+transition:0.4s;
 }
 
 /* HEADER */
@@ -290,11 +291,21 @@ document.getElementById(name).innerText = cart[name].qty;
 }
 
 function goSummary(){
+
+document.body.style.opacity="0.6";
+
 localStorage.setItem("cart", JSON.stringify(cart));
-window.location.href = "order.html";
+
+setTimeout(function(){
+
+window.location.href="cart.html";
+
+},400);
+
 }
 
 </script>
+
 
 </body>
 </html>
