@@ -37,16 +37,29 @@ padding:12px;
 border-bottom:1px solid #ddd;
 }
 
-.controls button{
-margin:0 5px;
-padding:5px 10px;
-border:none;
-border-radius:6px;
-cursor:pointer;
+.controls{
+display:flex;
+align-items:center;
+gap:8px;
 }
 
-.add{ background:#2b1b14; color:white; }
-.remove{ background:#c62828; color:white; }
+button{
+border:none;
+cursor:pointer;
+border-radius:6px;
+padding:5px 10px;
+font-weight:600;
+}
+
+.plus, .minus{
+background:#2b1b14;
+color:white;
+}
+
+.remove{
+background:#c62828;
+color:white;
+}
 
 .total{
 text-align:right;
@@ -77,6 +90,7 @@ font-weight:600;
 .empty{
 text-align:center;
 padding:20px;
+font-size:18px;
 }
 </style>
 </head>
@@ -89,7 +103,7 @@ padding:20px;
 
 <script>
 
-// 🧠 CART LOAD
+// 🧠 LOAD CART SAFELY
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
 // 💾 SAVE
@@ -97,7 +111,7 @@ function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// 📊 RENDER CART
+// 📊 RENDER
 function render(){
 let box = document.getElementById("box");
 box.innerHTML = "";
@@ -107,32 +121,33 @@ let hasItems = false;
 
 Object.keys(cart).forEach(item => {
 
-if(cart[item].qty > 0){
+let data = cart[item];
+if(!data || data.qty <= 0) return;
+
 hasItems = true;
 
-let itemTotal = cart[item].price * cart[item].qty;
+let itemTotal = data.price * data.qty;
 total += itemTotal;
 
 box.innerHTML += `
 <div class="item">
   <div>
     <b>${item}</b><br>
-    ₹${cart[item].price}
+    ₹${data.price}
   </div>
 
   <div class="controls">
-    <button class="add" onclick="inc('${item}')">+</button>
-    <span>${cart[item].qty}</span>
-    <button class="add" onclick="dec('${item}')">-</button>
+    <button class="minus" onclick="dec('${item}')">-</button>
+    <span>${data.qty}</span>
+    <button class="plus" onclick="inc('${item}')">+</button>
     <button class="remove" onclick="removeItem('${item}')">x</button>
   </div>
 </div>
 `;
-}
 });
 
 if(!hasItems){
-box.innerHTML = `<div class="empty">☕ Cart is empty</div>`;
+box.innerHTML = `<div class="empty">☕ Your cart is empty</div>`;
 }
 
 box.innerHTML += `
@@ -140,7 +155,7 @@ box.innerHTML += `
 
 <div class="actions">
 <button class="btn menuBtn" onclick="goMenu()">Add More</button>
-<button class="btn payBtn" onclick="checkout()">Proceed</button>
+<button class="btn payBtn" onclick="checkout()">Proceed to Payment</button>
 <button class="btn clearBtn" onclick="clearCart()">Clear</button>
 </div>
 `;
@@ -148,20 +163,23 @@ box.innerHTML += `
 
 // ➕ INCREASE
 function inc(item){
+if(cart[item]){
 cart[item].qty++;
 save();
 render();
 }
+}
 
 // ➖ DECREASE
 function dec(item){
-if(cart[item].qty > 1){
+if(cart[item]){
 cart[item].qty--;
-} else {
+if(cart[item].qty <= 0){
 delete cart[item];
 }
 save();
 render();
+}
 }
 
 // ❌ REMOVE
@@ -171,14 +189,14 @@ save();
 render();
 }
 
-// 🧹 CLEAR CART
+// 🧹 CLEAR
 function clearCart(){
 cart = {};
 save();
 render();
 }
 
-// 🏠 MENU PAGE
+// 🏠 MENU
 function goMenu(){
 window.location.href = "menu.html";
 }
