@@ -59,13 +59,14 @@ cursor:pointer;
 font-weight:600;
 }
 
-.add{ background:#2b1b14; color:white; }
+.menu{ background:#2b1b14; color:white; }
 .pay{ background:#2e7d32; color:white; }
 .back{ background:#c62828; color:white; }
 
 .empty{
 text-align:center;
 padding:20px;
+font-size:18px;
 }
 </style>
 </head>
@@ -78,9 +79,10 @@ padding:20px;
 
 <script>
 
+// 🧠 SAFE LOAD
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-// 🧠 RENDER ORDER
+// 📊 RENDER
 function render(){
 
 let box = document.getElementById("box");
@@ -91,19 +93,20 @@ let hasItems = false;
 
 Object.keys(cart).forEach(item => {
 
-if(cart[item].qty > 0){
+let data = cart[item];
+if(!data || data.qty <= 0) return;
+
 hasItems = true;
 
-let itemTotal = cart[item].price * cart[item].qty;
+let itemTotal = data.price * data.qty;
 total += itemTotal;
 
 box.innerHTML += `
 <div class="item">
-<span>${item} × ${cart[item].qty}</span>
-<span>₹${itemTotal}</span>
+  <span>${item} × ${data.qty}</span>
+  <span>₹${itemTotal}</span>
 </div>
 `;
-}
 });
 
 if(!hasItems){
@@ -115,24 +118,22 @@ box.innerHTML += `
 <div class="total">Total: ₹${total}</div>
 
 <div class="actions">
-<button class="btn add" onclick="goMenu()">Add More</button>
+<button class="btn menu" onclick="goMenu()">Add More</button>
 <button class="btn pay" onclick="goPayment()">Proceed to Payment</button>
 <button class="btn back" onclick="goCart()">Back</button>
 </div>
 `;
 }
 
-// 🏠 MENU
+// 🏠 NAVIGATION
 function goMenu(){
 window.location.href = "menu.html";
 }
 
-// 🛒 CART
 function goCart(){
 window.location.href = "cart.html";
 }
 
-// 💳 PAYMENT
 function goPayment(){
 window.location.href = "payment.html";
 }
