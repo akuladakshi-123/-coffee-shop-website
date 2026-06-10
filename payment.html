@@ -86,18 +86,18 @@ font-weight:600;
 
 <script>
 
-// 🧠 SIMULATE PAYMENT
-setTimeout(()=>{
-
-// clear cart ONLY after success
-localStorage.removeItem("cart");
+// 🧠 PAYMENT FLOW CONTROL
+setTimeout(() => {
 
 document.getElementById("loading").style.display = "none";
 document.getElementById("success").style.display = "block";
 
+// 🧹 CLEAR CART ONLY AFTER SUCCESS IS SHOWN
+localStorage.removeItem("cart");
+
 }, 3000);
 
-// 🏠 GO HOME
+// 🏠 HOME
 function goHome(){
 window.location.href = "index.html";
 }
