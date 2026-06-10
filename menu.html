@@ -60,6 +60,20 @@ border-radius:20px;
 font-weight:600;
 cursor:pointer;
 }
+
+/* Toast */
+#toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#2b1b14;
+color:white;
+padding:12px 20px;
+border-radius:20px;
+opacity:0;
+transition:0.3s;
+}
 </style>
 </head>
 
@@ -92,29 +106,46 @@ cursor:pointer;
 
 </div>
 
+<!-- TOAST -->
+<div id="toast"></div>
+
 <script>
 
-// 🧠 CART BRAIN
+// 🧠 LOAD CART SAFELY
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+// 💾 SAVE CART
+function saveCart(){
+localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 // ➕ ADD TO CART
 function addToCart(name, price){
 
 if(!cart[name]){
-cart[name] = {price:price, qty:1};
-}
-else{
+cart[name] = {price: price, qty: 1};
+}else{
 cart[name].qty += 1;
 }
 
-localStorage.setItem("cart", JSON.stringify(cart));
-
-alert(name + " added ☕");
+saveCart();
+showToast(name + " added ☕");
 }
 
-// 🛒 GO TO CART
+// 🛒 GO CART
 function goCart(){
 window.location.href = "cart.html";
+}
+
+// 🔔 TOAST MESSAGE
+function showToast(msg){
+let toast = document.getElementById("toast");
+toast.innerText = msg;
+toast.style.opacity = 1;
+
+setTimeout(()=>{
+toast.style.opacity = 0;
+},1200);
 }
 
 </script>
