@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drip Cafe Order Summary</title>
+<title>Drip Cafe - Cart</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -18,151 +18,257 @@ font-family:'Poppins',sans-serif;
 body{
 background:linear-gradient(135deg,#2b1b14,#5a3a2b);
 min-height:100vh;
-padding:30px;
 color:white;
 }
 
-h1{
+/* TOP BAR */
+.topbar{
+padding:20px;
 text-align:center;
-margin-bottom:30px;
-font-size:40px;
+font-size:28px;
+font-weight:600;
 }
 
-.box{
-max-width:850px;
-margin:auto;
+/* CART ICON BUTTON */
+.openBtn{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#ffcc70;
+color:#2b1b14;
+padding:15px 20px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-weight:600;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+.openBtn:hover{ transform:scale(1.05); }
+
+/* OVERLAY */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+justify-content:flex-end;
+}
+
+/* CART PANEL */
+.cart{
+width:380px;
+height:100%;
 background:#f5e6d3;
 color:#2b1b14;
-padding:35px;
-border-radius:25px;
-box-shadow:0 15px 40px rgba(0,0,0,0.35);
+padding:20px;
+transform:translateX(100%);
+transition:0.4s;
+overflow-y:auto;
 }
 
+.overlay.show{
+display:flex;
+}
+
+.overlay.show .cart{
+transform:translateX(0);
+}
+
+/* ITEM */
 .item{
 display:flex;
 justify-content:space-between;
+align-items:center;
 padding:15px 0;
 border-bottom:1px solid #ddd;
-font-size:18px;
 }
 
-.total{
-text-align:right;
-font-size:28px;
-font-weight:bold;
-margin-top:25px;
-padding-top:15px;
-border-top:2px solid #ddd;
+.name{
+font-weight:600;
 }
 
-.buttons{
+.controls{
 display:flex;
-gap:15px;
-margin-top:25px;
-flex-wrap:wrap;
+align-items:center;
+gap:10px;
 }
 
 button{
-flex:1;
-padding:15px;
 border:none;
-border-radius:12px;
 cursor:pointer;
-font-size:16px;
+padding:5px 10px;
+border-radius:6px;
 font-weight:600;
-transition:0.3s;
 }
 
-button:hover{
-transform:translateY(-4px);
+.qtyBtn{
+background:#2b1b14;
+color:white;
 }
 
-.add{ background:#2b1b14; color:white; }
-.order{ background:#2e7d32; color:white; }
-.clear{ background:#c62828; color:white; }
+.removeBtn{
+background:#c62828;
+color:white;
+}
+
+/* TOTAL */
+.total{
+margin-top:20px;
+font-size:22px;
+font-weight:700;
+text-align:right;
+}
+
+/* ACTIONS */
+.actions{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.actionBtn{
+padding:12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+}
+
+.menuBtn{ background:#2b1b14; color:white; }
+.payBtn{ background:#2e7d32; color:white; }
+.clearBtn{ background:#c62828; color:white; }
 
 .empty{
 text-align:center;
-font-size:22px;
-padding:30px;
+margin-top:50px;
+font-size:18px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>☕ Drip Cafe Order Summary</h1>
+<div class="topbar">☕ Drip Cafe</div>
 
-<div class="box" id="box"></div>
+<button class="openBtn" onclick="openCart()">View Cart 🛒</button>
+
+<!-- CART -->
+<div class="overlay" id="overlay">
+  <div class="cart">
+    
+    <h2>Your Order</h2>
+    <div id="cartItems"></div>
+
+    <div class="total" id="total">Total: ₹0</div>
+
+    <div class="actions">
+      <button class="actionBtn menuBtn" onclick="goMenu()">Add More</button>
+      <button class="actionBtn payBtn" onclick="checkout()">Proceed to Payment</button>
+      <button class="actionBtn clearBtn" onclick="clearCart()">Clear Cart</button>
+      <button class="actionBtn" onclick="closeCart()">Close</button>
+    </div>
+
+  </div>
+</div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-function renderCart() {
-let box = document.getElementById("box");
+function save(){
+localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function openCart(){
+document.getElementById("overlay").classList.add("show");
+render();
+}
+
+function closeCart(){
+document.getElementById("overlay").classList.remove("show");
+}
+
+function render(){
+let box = document.getElementById("cartItems");
 box.innerHTML = "";
 
 let total = 0;
-let hasItems = false;
+let has = false;
 
 Object.keys(cart).forEach(item => {
-if (cart[item].qty > 0) {
-hasItems = true;
 
-let itemTotal = cart[item].price * cart[item].qty;
+if(cart[item].qty > 0){
+has = true;
+
+let itemTotal = cart[item].qty * cart[item].price;
 total += itemTotal;
 
 box.innerHTML += `
 <div class="item">
-<span>${item} × ${cart[item].qty}</span>
-<span>₹${itemTotal}</span>
+  <div>
+    <div class="name">${item}</div>
+    <small>₹${cart[item].price}</small>
+  </div>
+
+  <div class="controls">
+    <button class="qtyBtn" onclick="dec('${item}')">-</button>
+    <span>${cart[item].qty}</span>
+    <button class="qtyBtn" onclick="inc('${item}')">+</button>
+    <button class="removeBtn" onclick="removeItem('${item}')">x</button>
+  </div>
 </div>
 `;
 }
+
 });
 
-if (!hasItems) {
-box.innerHTML = `
-<div class="empty">
-☕ Your cart is empty
-<br><br>
-<button class="add" onclick="goMenu()">Browse Menu</button>
-</div>
-`;
-return;
+if(!has){
+box.innerHTML = `<div class="empty">☕ Your cart is empty</div>`;
 }
 
-box.innerHTML += `
-<div class="total">
-Total: ₹${total}
-</div>
+document.getElementById("total").innerText = "Total: ₹" + total;
+}
 
-<div class="buttons">
-<button class="add" onclick="goMenu()">☕ Add More</button>
-<button class="order" onclick="orderNow()">💳 Proceed to Payment</button>
-<button class="clear" onclick="clearCart()">🗑 Clear Cart</button>
-</div>
-`;
+function inc(item){
+cart[item].qty++;
+save();
+render();
+}
+
+function dec(item){
+if(cart[item].qty > 1){
+cart[item].qty--;
+} else {
+delete cart[item];
+}
+save();
+render();
+}
+
+function removeItem(item){
+delete cart[item];
+save();
+render();
+}
+
+function clearCart(){
+cart = {};
+save();
+render();
 }
 
 function goMenu(){
 window.location.href = "menu.html";
 }
 
-function orderNow(){
-localStorage.setItem("cart", JSON.stringify(cart));
+function checkout(){
+save();
 window.location.href = "order.html";
 }
-
-function clearCart(){
-if(confirm("Clear all items from cart?")){
-localStorage.removeItem("cart");
-cart = {};
-renderCart();
-}
-}
-
-renderCart();
 </script>
 
 </body>
