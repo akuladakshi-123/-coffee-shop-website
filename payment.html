@@ -124,8 +124,24 @@ font-weight:600;
 cursor:pointer;
 }
 
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+border:none;
+border-radius:12px;
+background:#2b1b14;
+color:white;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+transition:all 0.3s ease;
+}
+
 button:hover{
 background:#1a100b;
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
 .orderid{
@@ -159,10 +175,16 @@ alt="QR Code">
 
 </div>
 
+<p style="margin-top:10px;color:#6b4d3d;font-size:14px;">
+Please complete payment before clicking "I've Paid"
+</p>
+
 <div class="status">
 <span class="dot"></span>
 Scan using PhonePe, GPay or Paytm
 </div>
+
+
 
 <div class="summary" id="summary">
 Loading order...
