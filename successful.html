@@ -3,95 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Successful</title> 
+<title>Order Successful | Drip Cafe</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-body{
+*{
 margin:0;
-font-family:Poppins;
-background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-color:#fff;
+background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+padding:20px;
 }
 
-/* CARD */
 .box{
 background:#f5e6d3;
 color:#2b1b14;
 padding:40px;
-border-radius:20px;
+border-radius:25px;
 text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.4);
-animation:pop 0.5s ease;
-max-width:350px;
+box-shadow:0 15px 40px rgba(0,0,0,0.35);
+max-width:400px;
+width:100%;
+animation:pop 0.6s ease;
 }
 
-/* POP ANIMATION */
 @keyframes pop{
-from{
+0%{
 transform:scale(0.7);
 opacity:0;
 }
-to{
+100%{
 transform:scale(1);
 opacity:1;
 }
 }
 
-/* CHECK ICON */
 .check{
-width:90px;
-height:90px;
+width:100px;
+height:100px;
 background:#2ecc71;
 border-radius:50%;
 display:flex;
 justify-content:center;
 align-items:center;
 margin:auto;
-animation:zoom 0.5s ease;
+animation:zoom 0.8s ease;
+box-shadow:0 0 25px rgba(46,204,113,0.5);
 }
 
 .check span{
-font-size:50px;
+font-size:55px;
 color:white;
+font-weight:bold;
 }
 
 @keyframes zoom{
-from{
+0%{
 transform:scale(0);
 }
-to{
+100%{
 transform:scale(1);
 }
 }
 
 h1{
-font-family:'Playfair Display',serif;
 margin-top:20px;
+font-family:'Playfair Display',serif;
+font-size:38px;
 }
 
 p{
-color:#333;
-margin-top:10px;
+margin-top:12px;
+color:#444;
+font-size:15px;
+}
+
+.orderid{
+margin-top:15px;
+padding:10px;
+background:white;
+border-radius:12px;
+font-weight:600;
+}
+
+.time{
+margin-top:12px;
+font-size:14px;
+color:#666;
 }
 
 button{
-margin-top:20px;
-padding:12px 20px;
+margin-top:25px;
+padding:14px 30px;
 border:none;
-border-radius:10px;
+border-radius:30px;
 background:#2b1b14;
 color:white;
+font-size:16px;
+font-weight:600;
 cursor:pointer;
+transition:all 0.3s ease;
 }
 
 button:hover{
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 background:#1a0f0b;
 }
 
@@ -107,17 +133,29 @@ background:#1a0f0b;
 </div>
 
 <h1>Thank You!</h1>
-<p>Your order is placed successfully ☕</p>
-<p>We are preparing your coffee...</p>
 
-<button onclick="goHome()">Back to Home</button>
+<p>Payment Successful ☕</p>
+
+<p>Your order has been placed successfully.</p>
+
+<div class="orderid">
+Order ID: #DC1024
+</div>
+
+<div class="time">
+⏱ Estimated preparation time: 8-10 mins
+</div>
+
+<button onclick="goHome()">
+🏠 Back to Home
+</button>
 
 </div>
 
 <script>
 
 function goHome(){
-window.location.href = "index.html";
+window.location.href="index.html";
 }
 
 </script>
