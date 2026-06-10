@@ -3,232 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drip Cafe Payment</title>
+<title>Payment - Drip Cafe</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
 body{
-min-height:100vh;
+margin:0;
+font-family:Poppins;
 background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+color:white;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
+height:100vh;
 }
 
-.card{
-background:#f5e6d3;
-width:360px;
-padding:25px;
-border-radius:25px;
+.box{
 text-align:center;
-box-shadow:0 15px 40px rgba(0,0,0,0.35);
-}
-
-h2{
+background:#f5e6d3;
 color:#2b1b14;
-margin-bottom:8px;
-}
-
-.subtitle{
-color:#6b4d3d;
-margin-bottom:15px;
-}
-
-/* QR BOX */
-
-.scanner-box{
-position:relative;
-width:220px;
-height:220px;
-margin:20px auto;
-background:white;
+padding:30px;
 border-radius:20px;
-overflow:hidden;
-border:2px solid #d7c2ab;
-display:flex;
-justify-content:center;
-align-items:center;
+width:300px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-.scan-line{
-position:absolute;
-left:0;
-width:100%;
-height:4px;
-background:#00ff88;
-box-shadow:0 0 15px #00ff88;
-animation:scan 2s linear infinite;
-}
-
-@keyframes scan{
-0%{top:0;}
-100%{top:100%;}
-}
-
-.status{
-margin-top:15px;
-font-size:14px;
-font-weight:500;
-color:#2b1b14;
-}
-
-.dot{
-display:inline-block;
-width:10px;
-height:10px;
-background:#00c853;
+.loader{
+border:5px solid #ddd;
+border-top:5px solid #2b1b14;
 border-radius:50%;
-margin-right:8px;
-animation:blink 1s infinite;
+width:50px;
+height:50px;
+margin:20px auto;
+animation:spin 1s linear infinite;
 }
 
-@keyframes blink{
-50%{opacity:.3;}
+@keyframes spin{
+100%{ transform:rotate(360deg); }
 }
 
-.summary{
-margin-top:20px;
-padding:15px;
-background:white;
-border-radius:12px;
-text-align:left;
-color:#2b1b14;
-}
-
-.total{
-font-weight:bold;
+.text{
+font-weight:600;
 margin-top:10px;
-font-size:17px;
 }
 
-button{
-width:100%;
-padding:14px;
-margin-top:20px;
+.success{
+display:none;
+}
+
+.btn{
+margin-top:15px;
+padding:10px;
 border:none;
-border-radius:12px;
-background:#2b1b14;
-color:white;
-font-size:15px;
-font-weight:600;
-cursor:pointer;
-}
-
-button{
-width:100%;
-padding:14px;
-margin-top:20px;
-border:none;
-border-radius:12px;
-background:#2b1b14;
-color:white;
-font-size:15px;
-font-weight:600;
-cursor:pointer;
-transition:all 0.3s ease;
-}
-
-button:hover{
-background:#1a100b;
-transform:translateY(-3px);
-box-shadow:0 8px 20px rgba(0,0,0,0.3);
-}
-
-.orderid{
-background:#fff;
-padding:8px;
 border-radius:10px;
-margin-top:10px;
+background:#2e7d32;
+color:white;
+cursor:pointer;
 font-weight:600;
 }
-
 </style>
 </head>
+
 <body>
 
-<div class="card">
+<div class="box">
 
-<h2>☕ Drip Cafe</h2>
-<p class="subtitle">Scan & Pay</p>
-
-<div class="orderid">
-Order #DC1024
+<!-- LOADING -->
+<div id="loading">
+<div class="loader"></div>
+<div class="text">Processing Payment...</div>
 </div>
 
-<div class="scanner-box">
-
-<img
-src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=DripCafePayment"
-alt="QR Code">
-
-<div class="scan-line"></div>
-
+<!-- SUCCESS -->
+<div id="success" class="success">
+<h2>🎉 Payment Successful</h2>
+<p>Your coffee is on the way ☕🚀</p>
+<button class="btn" onclick="goHome()">Back to Home</button>
 </div>
-
-<p style="margin-top:10px;color:#6b4d3d;font-size:14px;">
-Please complete payment before clicking "I've Paid"
-</p>
-
-<div class="status">
-<span class="dot"></span>
-Scan using PhonePe, GPay or Paytm
-</div>
-
-
-
-<div class="summary" id="summary">
-Loading order...
-</div>
-
-<button onclick="payNow()">
-✅ I've Paid
-</button>
 
 </div>
 
 <script>
 
-let cart = JSON.parse(localStorage.getItem("cart")) || {};
+// 🧠 SIMULATE PAYMENT
+setTimeout(()=>{
 
-let summary = document.getElementById("summary");
+// clear cart ONLY after success
+localStorage.removeItem("cart");
 
-let total = 0;
-let html = "<h3>Order Summary</h3>";
+document.getElementById("loading").style.display = "none";
+document.getElementById("success").style.display = "block";
 
-for(let item in cart){
+}, 3000);
 
-if(cart[item].qty > 0){
-
-let itemTotal = cart[item].price * cart[item].qty;
-
-total += itemTotal;
-
-html += `
-<p>${item} x ${cart[item].qty} = ₹${itemTotal}</p>
-`;
-
-}
-
-}
-
-html += `<p class="total">Total: ₹${total}</p>`;
-
-summary.innerHTML = html;
-
-function payNow(){
-
-window.location.href = "successful.html";
-
+// 🏠 GO HOME
+function goHome(){
+window.location.href = "index.html";
 }
 
 </script>
