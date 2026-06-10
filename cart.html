@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -27,7 +26,6 @@ h1{
 text-align:center;
 margin-bottom:30px;
 font-size:40px;
-font-weight:700;
 }
 
 .box{
@@ -77,30 +75,17 @@ transition:0.3s;
 
 button:hover{
 transform:translateY(-4px);
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
-.add{
-background:#2b1b14;
-color:white;
-}
-
-.order{
-background:#2e7d32;
-color:white;
-}
-
-.clear{
-background:#c62828;
-color:white;
-}
+.add{ background:#2b1b14; color:white; }
+.order{ background:#2e7d32; color:white; }
+.clear{ background:#c62828; color:white; }
 
 .empty{
 text-align:center;
 font-size:22px;
 padding:30px;
 }
-
 </style>
 </head>
 
@@ -111,21 +96,20 @@ padding:30px;
 <div class="box" id="box"></div>
 
 <script>
-
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+function renderCart() {
 let box = document.getElementById("box");
+box.innerHTML = "";
 
 let total = 0;
 let hasItems = false;
 
-for(let item in cart){
-
-if(cart[item].qty > 0){
-
+Object.keys(cart).forEach(item => {
+if (cart[item].qty > 0) {
 hasItems = true;
 
 let itemTotal = cart[item].price * cart[item].qty;
-
 total += itemTotal;
 
 box.innerHTML += `
@@ -134,12 +118,10 @@ box.innerHTML += `
 <span>₹${itemTotal}</span>
 </div>
 `;
-
 }
-}
+});
 
-if(!hasItems){
-
+if (!hasItems) {
 box.innerHTML = `
 <div class="empty">
 ☕ Your cart is empty
@@ -147,8 +129,8 @@ box.innerHTML = `
 <button class="add" onclick="goMenu()">Browse Menu</button>
 </div>
 `;
-
-}else{
+return;
+}
 
 box.innerHTML += `
 <div class="total">
@@ -164,23 +146,23 @@ Total: ₹${total}
 }
 
 function goMenu(){
-window.location.href="menu.html";
+window.location.href = "menu.html";
 }
 
 function orderNow(){
 localStorage.setItem("cart", JSON.stringify(cart));
-window.location.href="order.html";
+window.location.href = "order.html";
 }
 
 function clearCart(){
-
 if(confirm("Clear all items from cart?")){
 localStorage.removeItem("cart");
-location.reload();
+cart = {};
+renderCart();
+}
 }
 
-}
-
+renderCart();
 </script>
 
 </body>
