@@ -18,13 +18,13 @@ padding:20px;
 
 h1{
 text-align:center;
+margin-bottom:20px;
 }
 
 .menu{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
-margin-top:20px;
 }
 
 .card{
@@ -34,8 +34,26 @@ padding:15px;
 border-radius:15px;
 text-align:center;
 box-shadow:0 10px 20px rgba(0,0,0,0.3);
+position:relative;
+transition:0.3s;
 }
 
+.card:hover{
+transform:translateY(-5px);
+}
+
+.star{
+position:absolute;
+top:10px;
+right:10px;
+background:#ffcc70;
+padding:5px 8px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+/* BUTTON */
 button{
 margin-top:10px;
 padding:10px;
@@ -44,14 +62,10 @@ border-radius:10px;
 cursor:pointer;
 background:#2b1b14;
 color:white;
+font-weight:600;
 }
 
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
+/* CART BUTTON */
 .cartBtn{
 background:#ffcc70;
 color:#2b1b14;
@@ -59,9 +73,12 @@ padding:10px 15px;
 border-radius:20px;
 font-weight:600;
 cursor:pointer;
+position:fixed;
+top:20px;
+right:20px;
 }
 
-/* Toast */
+/* TOAST */
 #toast{
 position:fixed;
 bottom:20px;
@@ -79,20 +96,22 @@ transition:0.3s;
 
 <body>
 
-<div class="topbar">
-<h2>☕ Drip Cafe Menu</h2>
+<h1>☕ Drip Cafe Menu</h1>
+
 <div class="cartBtn" onclick="goCart()">View Cart 🛒</div>
-</div>
 
 <div class="menu">
 
+<!-- COFFEE -->
 <div class="card">
+<div class="star">⭐ Popular</div>
 <h3>Latte</h3>
 <p>₹120</p>
 <button onclick="addToCart('Latte',120)">Add</button>
 </div>
 
 <div class="card">
+<div class="star">⭐ Popular</div>
 <h3>Cappuccino</h3>
 <p>₹140</p>
 <button onclick="addToCart('Cappuccino',140)">Add</button>
@@ -104,6 +123,53 @@ transition:0.3s;
 <button onclick="addToCart('Espresso',100)">Add</button>
 </div>
 
+<div class="card">
+<div class="star">⭐ New</div>
+<h3>Mocha</h3>
+<p>₹150</p>
+<button onclick="addToCart('Mocha',150)">Add</button>
+</div>
+
+<div class="card">
+<h3>Americano</h3>
+<p>₹110</p>
+<button onclick="addToCart('Americano',110)">Add</button>
+</div>
+
+<!-- SNACKS -->
+<div class="card">
+<div class="star">⭐ Popular</div>
+<h3>Sandwich</h3>
+<p>₹80</p>
+<button onclick="addToCart('Sandwich',80)">Add</button>
+</div>
+
+<div class="card">
+<h3>French Fries</h3>
+<p>₹90</p>
+<button onclick="addToCart('Fries',90)">Add</button>
+</div>
+
+<div class="card">
+<div class="star">⭐ Hot</div>
+<h3>Brownie</h3>
+<p>₹130</p>
+<button onclick="addToCart('Brownie',130)">Add</button>
+</div>
+
+<div class="card">
+<h3>Donut</h3>
+<p>₹70</p>
+<button onclick="addToCart('Donut',70)">Add</button>
+</div>
+
+<div class="card">
+<div class="star">⭐ Bestseller</div>
+<h3>Cold Coffee</h3>
+<p>₹150</p>
+<button onclick="addToCart('Cold Coffee',150)">Add</button>
+</div>
+
 </div>
 
 <!-- TOAST -->
@@ -111,40 +177,35 @@ transition:0.3s;
 
 <script>
 
-// 🧠 LOAD CART SAFELY
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-// 💾 SAVE CART
-function saveCart(){
+function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// ➕ ADD TO CART
 function addToCart(name, price){
 
 if(!cart[name]){
-cart[name] = {price: price, qty: 1};
+cart[name] = {price:price, qty:1};
 }else{
 cart[name].qty += 1;
 }
 
-saveCart();
+save();
 showToast(name + " added ☕");
 }
 
-// 🛒 GO CART
 function goCart(){
 window.location.href = "cart.html";
 }
 
-// 🔔 TOAST MESSAGE
 function showToast(msg){
-let toast = document.getElementById("toast");
-toast.innerText = msg;
-toast.style.opacity = 1;
+let t = document.getElementById("toast");
+t.innerText = msg;
+t.style.opacity = 1;
 
 setTimeout(()=>{
-toast.style.opacity = 0;
+t.style.opacity = 0;
 },1200);
 }
 
