@@ -268,9 +268,8 @@ background:#000;
 
 </section>
 
-<!-- VIEW CART ONLY -->
 <div class="actions">
-<button class="view" onclick="goSummary()">🛒 View Cart</button>
+<button class="view" onclick="goSummary()">📋 Review Order</button>
 </div>
 
 <script>
@@ -285,22 +284,18 @@ cart[name] = {price, qty:0};
 
 cart[name].qty += change;
 
-if(cart[name].qty < 0) cart[name].qty = 0;
+if(cart[name].qty < 0){
+cart[name].qty = 0;
+}
 
 document.getElementById(name).innerText = cart[name].qty;
 }
 
 function goSummary(){
 
-document.body.style.opacity="0.6";
-
 localStorage.setItem("cart", JSON.stringify(cart));
 
-setTimeout(function(){
-
-window.location.href="cart.html";
-
-},400);
+window.location.href = "cart.html";
 
 }
 
