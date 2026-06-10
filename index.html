@@ -173,7 +173,7 @@ Discover hand-crafted coffee made with passion and premium beans.
 Experience warmth, aroma and unforgettable taste at Drip Cafe.
 </p>
 
-<a href="menu.html" class="btn">Explore Menu</a>
+<a href="#" class="btn" onclick="openMenu()">Explore Menu</a>
 
 </div>
 
@@ -190,6 +190,16 @@ Experience warmth, aroma and unforgettable taste at Drip Cafe.
 © 2026 DRIP CAFE | Every Moment Has Its Flavour ☕
 
 </footer>
+
+<script>
+function openMenu(){
+document.body.style.opacity="0.5";
+
+setTimeout(function(){
+window.location.href="menu.html";
+},300);
+}
+</script>
 
 </body>
 </html>
