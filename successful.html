@@ -3,100 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Successful - Drip Cafe</title>
+<title>Order Successful</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
 font-family:Poppins;
-background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+background:#0f0a08;
+color:white;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-color:white;
-overflow:hidden;
 }
 
-/* CARD */
-.card{
+.box{
 text-align:center;
-background:#f5e6d3;
-color:#2b1b14;
+background:#1f120d;
 padding:30px;
 border-radius:20px;
 width:320px;
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
 animation:pop 0.6s ease;
 }
 
+/* POP ANIMATION */
 @keyframes pop{
-from{ transform:scale(0.6); opacity:0; }
-to{ transform:scale(1); opacity:1; }
+0%{transform:scale(0.5); opacity:0;}
+100%{transform:scale(1); opacity:1;}
 }
 
-/* TICK */
-.tick{
-font-size:60px;
-color:#2e7d32;
-margin-bottom:10px;
+/* CHECK ICON */
+.check{
+width:80px;
+height:80px;
+background:#2e7d32;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+font-size:40px;
+animation:bounce 0.8s ease;
+}
+
+@keyframes bounce{
+0%{transform:scale(0);}
+60%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+
+h2{
+margin-top:15px;
+color:#ffcc70;
+}
+
+p{
+opacity:0.8;
+font-size:14px;
 }
 
 /* BUTTON */
-button{
+.btn{
 margin-top:15px;
-padding:12px;
+padding:10px;
 border:none;
 border-radius:10px;
-background:#2b1b14;
-color:white;
-cursor:pointer;
+background:#ffcc70;
+color:#2b1b14;
 font-weight:600;
+cursor:pointer;
 }
 
-/* FLOATING CONFETTI */
-.confetti{
-position:absolute;
-width:10px;
-height:10px;
-background:gold;
-top:-10px;
-animation:fall 4s linear infinite;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
-}
 </style>
 </head>
 
 <body>
 
-<div class="card">
-<div class="tick">✔</div>
-<h2>Order Successful!</h2>
+<div class="box">
+
+<div class="check">✔</div>
+
+<h2>Order Placed!</h2>
 <p>Your coffee is being prepared ☕🚀</p>
-<button onclick="goHome()">Back to Home</button>
+
+<button class="btn" onclick="home()">Back to Home</button>
+
 </div>
+
+<!-- 🔊 SOUND -->
+<audio id="successSound">
+<source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
-// 🧠 SIMPLE CONFETTI EFFECT
-for(let i=0;i<25;i++){
-let c = document.createElement("div");
-c.className = "confetti";
-c.style.left = Math.random()*100 + "vw";
-c.style.background = ["#ffcc70","#fff","#2e7d32","#c62828"][Math.floor(Math.random()*4)];
-c.style.animationDuration = (2+Math.random()*3)+"s";
-document.body.appendChild(c);
-}
+// play sound automatically
+window.onload = function(){
+document.getElementById("successSound").play();
+};
 
-// 🏠 HOME
-function goHome(){
+function home(){
 window.location.href = "index.html";
 }
 
