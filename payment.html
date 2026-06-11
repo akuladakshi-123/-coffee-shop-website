@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Processing Payment</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 font-family:Poppins;
-background:#0f0a08;
+background:#0b0b0b;
 color:white;
 display:flex;
 justify-content:center;
@@ -20,66 +20,96 @@ align-items:center;
 height:100vh;
 }
 
-.box{
-background:#1f120d;
-padding:25px;
-border-radius:20px;
+/* MAIN CARD */
+.card{
 width:320px;
+background:#141414;
+border-radius:18px;
+padding:25px;
 text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+box-shadow:0 10px 40px rgba(0,0,0,0.6);
 }
 
-/* TITLE */
-h2{
-color:#ffcc70;
-margin-bottom:10px;
-}
-
-/* QR FRAME */
-.qr-frame{
-width:200px;
-height:200px;
+/* ICON AREA */
+.icon{
+width:90px;
+height:90px;
 margin:auto;
-border-radius:15px;
-background:white;
-position:relative;
-overflow:hidden;
+border-radius:50%;
+background:#1f1f1f;
 display:flex;
 align-items:center;
 justify-content:center;
+position:relative;
+overflow:hidden;
 }
 
-/* QR IMAGE */
-.qr-frame img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* SCANNER LINE */
-.scan-line{
+/* PULSE */
+.icon::before{
+content:"";
 position:absolute;
 width:100%;
-height:4px;
-background:#ffcc70;
-top:0;
-left:0;
-animation:scan 1.5s infinite ease-in-out;
-opacity:0.9;
+height:100%;
+border-radius:50%;
+background:#00ff9d;
+opacity:0.2;
+animation:pulse 1.2s infinite;
 }
 
-@keyframes scan{
-0%{top:0;}
-50%{top:200px;}
-100%{top:0;}
+@keyframes pulse{
+0%{transform:scale(0.8); opacity:0.3;}
+50%{transform:scale(1.4); opacity:0;}
+100%{transform:scale(0.8); opacity:0.3;}
 }
 
-/* BLINKING DOTS */
-.dots{
+/* CHECK ANIMATION */
+.check{
+font-size:40px;
+color:#00ff9d;
+z-index:2;
+}
+
+/* TEXT */
+h2{
 margin-top:15px;
 font-size:18px;
-letter-spacing:3px;
+font-weight:600;
+}
+
+p{
+font-size:12px;
+opacity:0.7;
+margin-top:6px;
+}
+
+/* LOADING BAR */
+.bar{
+margin-top:20px;
+height:5px;
+background:#2a2a2a;
+border-radius:10px;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0%;
+background:#00ff9d;
+animation:fill 2.5s linear forwards;
+}
+
+@keyframes fill{
+0%{width:0%;}
+100%{width:100%;}
+}
+
+/* DOTS */
+.dots{
+margin-top:10px;
+font-size:18px;
+letter-spacing:4px;
 animation:blink 1s infinite;
+color:#00ff9d;
 }
 
 @keyframes blink{
@@ -88,65 +118,34 @@ animation:blink 1s infinite;
 100%{opacity:0.2;}
 }
 
-.small{
-font-size:12px;
-opacity:0.7;
-margin-top:10px;
-}
-
-/* LOADING BAR */
-.bar{
-width:100%;
-height:6px;
-background:#2b1b14;
-border-radius:10px;
-overflow:hidden;
-margin-top:15px;
-}
-
-.fill{
-height:100%;
-width:0%;
-background:#ffcc70;
-animation:fill 3s linear forwards;
-}
-
-@keyframes fill{
-0%{width:0%;}
-100%{width:100%;}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="card">
 
-<h2>Processing Payment</h2>
-
-<div class="qr-frame">
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=DripCafePayment" />
-<div class="scan-line"></div>
+<div class="icon">
+<div class="check">✓</div>
 </div>
 
-<div class="dots">● ● ●</div>
-
-<p class="small">Verifying UPI / QR Payment</p>
+<h2>Processing Payment</h2>
+<p>Secure UPI verification in progress</p>
 
 <div class="bar">
 <div class="fill"></div>
 </div>
 
+<div class="dots">● ● ●</div>
+
 </div>
 
 <script>
 
-// AUTO SUCCESS AFTER 3 SECONDS
 setTimeout(() => {
 localStorage.removeItem("cart");
 window.location.href = "successful.html";
-}, 3000);
+}, 2500);
 
 </script>
 
