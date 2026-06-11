@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay - Drip Cafe</title>
+<title>Pro Scanner Payment</title>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -23,9 +25,9 @@ height:100vh;
 .box{
 text-align:center;
 background:#2b1b14;
-padding:25px;
+padding:20px;
 border-radius:20px;
-width:320px;
+width:340px;
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
@@ -33,50 +35,18 @@ h2{
 color:#ffcc70;
 }
 
-/* QR IMAGE */
-.qr{
-width:180px;
-height:180px;
-margin:15px auto;
-background:white;
+#reader{
+width:300px;
+margin:auto;
 border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
 overflow:hidden;
 }
 
-.qr img{
-width:100%;
-height:100%;
-object-fit:cover;
+/* SUCCESS */
+.success{
+display:none;
 }
 
-/* SCAN ANIMATION */
-.scan-line{
-width:100%;
-height:4px;
-background:#ffcc70;
-position:absolute;
-top:0;
-left:0;
-animation:scan 2s infinite;
-}
-
-@keyframes scan{
-0%{top:0;}
-50%{top:180px;}
-100%{top:0;}
-}
-
-.qr-wrapper{
-position:relative;
-width:180px;
-height:180px;
-margin:auto;
-}
-
-/* BUTTON */
 .btn{
 margin-top:15px;
 padding:10px;
@@ -101,29 +71,71 @@ margin-top:10px;
 
 <div class="box">
 
-<h2>Scan & Pay ☕</h2>
-
-<div class="qr-wrapper">
-<div class="qr">
-<!-- Replace with your QR image -->
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=DripCafePayment" />
-</div>
-<div class="scan-line"></div>
+<!-- SCANNER -->
+<div id="scanner">
+<h2>Scan to Pay ☕</h2>
+<div id="reader"></div>
+<p class="small">Point camera at QR code</p>
 </div>
 
-<p class="small">Scan using Google Pay / PhonePe / Paytm</p>
-
-<button class="btn" onclick="done()">I Have Paid</button>
+<!-- SUCCESS -->
+<div id="success" class="success">
+<h2>🎉 Payment Successful</h2>
+<p>Your coffee is being prepared ☕🚀</p>
+<button class="btn" onclick="home()">Back to Home</button>
+</div>
 
 </div>
 
 <script>
 
-// clear cart on payment success
-function done(){
+let html5QrcodeScanner;
+
+// start scanner
+function startScanner(){
+
+html5QrcodeScanner = new Html5Qrcode("reader");
+
+Html5Qrcode.getCameras().then(devices => {
+
+if (devices && devices.length) {
+
+let cameraId = devices[0].id;
+
+html5QrcodeScanner.start(
+cameraId,
+{
+fps: 10,
+qrbox: 250
+},
+(qrMessage) => {
+
+// SUCCESS SCAN
+console.log("QR:", qrMessage);
+
+html5QrcodeScanner.stop();
+
+document.getElementById("scanner").style.display = "none";
+document.getElementById("success").style.display = "block";
+
 localStorage.removeItem("cart");
-window.location.href = "successful.html";
+
+},
+(errorMessage) => {
+// ignore scan errors
 }
+);
+
+}
+});
+
+}
+
+function home(){
+window.location.href = "index.html";
+}
+
+startScanner();
 
 </script>
 
