@@ -8,42 +8,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
 font-family:Poppins;
-background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+background:#1f120d;
 color:white;
-padding:20px;
+padding:15px;
 }
 
 h1{
 text-align:center;
-margin-bottom:20px;
+font-size:20px;
+margin-bottom:15px;
 }
 
+/* BOX */
 .box{
-max-width:700px;
+max-width:600px;
 margin:auto;
-background:#f5e6d3;
-color:#2b1b14;
-padding:20px;
-border-radius:20px;
+background:#2b1b14;
+padding:15px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
 }
 
+/* ITEMS */
 .item{
 display:flex;
 justify-content:space-between;
-padding:10px 0;
-border-bottom:1px solid #ddd;
+padding:12px;
+border-bottom:1px solid rgba(255,255,255,0.1);
+transition:0.2s;
 }
 
+.item:hover{
+transform:scale(1.01);
+}
+
+/* TOTAL */
 .total{
 text-align:right;
-font-size:22px;
-font-weight:bold;
+font-size:20px;
+font-weight:700;
 margin-top:15px;
 }
 
+/* BUTTON AREA */
 .actions{
 display:flex;
 gap:10px;
@@ -54,35 +65,37 @@ margin-top:20px;
 flex:1;
 padding:12px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 font-weight:600;
 }
 
-.menu{ background:#2b1b14; color:white; }
+.menu{ background:#ffcc70; color:#2b1b14; }
 .pay{ background:#2e7d32; color:white; }
 .back{ background:#c62828; color:white; }
 
+/* EMPTY */
 .empty{
 text-align:center;
 padding:20px;
-font-size:18px;
+opacity:0.8;
 }
+
 </style>
 </head>
 
 <body>
 
-<h1>☕ Order Summary</h1>
+<h1>🧾 Order Summary</h1>
 
 <div class="box" id="box"></div>
 
 <script>
 
-// 🧠 SAFE LOAD
+// 🧠 LOAD CART
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-// 📊 RENDER
+// 📊 RENDER ORDER
 function render(){
 
 let box = document.getElementById("box");
