@@ -95,13 +95,14 @@ opacity:0.8;
 // 🧠 LOAD CART
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-// 📊 RENDER ORDER
+// 📊 RENDER ORDER (FIXED - NO DUPLICATION)
 function render(){
 
 let box = document.getElementById("box");
 box.innerHTML = "";
 
 let total = 0;
+let html = "";
 let hasItems = false;
 
 Object.keys(cart).forEach(item => {
@@ -114,7 +115,7 @@ hasItems = true;
 let itemTotal = data.price * data.qty;
 total += itemTotal;
 
-box.innerHTML += `
+html += `
 <div class="item">
   <span>${item} × ${data.qty}</span>
   <span>₹${itemTotal}</span>
@@ -127,7 +128,7 @@ box.innerHTML = `<div class="empty">☕ No items in order</div>`;
 return;
 }
 
-box.innerHTML += `
+box.innerHTML = html + `
 <div class="total">Total: ₹${total}</div>
 
 <div class="actions">
