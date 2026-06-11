@@ -101,7 +101,7 @@ cursor:pointer;
 
 <div class="menu">
 
-<!-- COFFEE ITEMS -->
+<!-- ITEMS -->
 <div class="card">
 <div class="left">
 <h3>Latte ⭐</h3>
@@ -225,7 +225,7 @@ cursor:pointer;
 
 </div>
 
-<!-- BOTTOM CART -->
+<!-- BOTTOM BAR -->
 <div class="bottomBar" onclick="goOrder()">
 🧾 Proceed to Order - <span id="count">0</span>
 </div>
@@ -238,10 +238,9 @@ function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// ➕
 function incItem(name, price){
 if(!cart[name]){
-cart[name] = {price:price, qty:1};
+cart[name] = {price, qty:1};
 }else{
 cart[name].qty++;
 }
@@ -250,7 +249,6 @@ updateUI(name);
 updateCount();
 }
 
-// ➖
 function decItem(name){
 if(cart[name]){
 cart[name].qty--;
@@ -263,13 +261,11 @@ updateUI(name);
 updateCount();
 }
 
-// UI update
 function updateUI(name){
 let el = document.getElementById(name + "-qty");
 el.innerText = cart[name] ? cart[name].qty : 0;
 }
 
-// count
 function updateCount(){
 let count = 0;
 for(let i in cart){
@@ -278,17 +274,11 @@ count += cart[i].qty;
 document.getElementById("count").innerText = count;
 }
 
-function goCart(){
-window.location.href="cart.html";
-}
-
 function goOrder(){
 window.location.href = "order.html";
 }
 
 updateCount();
-
-
 
 </script>
 
