@@ -9,7 +9,8 @@
 
 <style>
 
-flying-item{
+/* ✨ FLYING ANIMATION FIXED */
+.flying-item{
   position:fixed;
   width:12px;
   height:12px;
@@ -19,6 +20,7 @@ flying-item{
   pointer-events:none;
   transition:all 0.8s ease;
 }
+
 body{
 margin:0;
 font-family:Poppins;
@@ -36,6 +38,7 @@ margin-bottom:20px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
+padding-bottom:80px;
 }
 
 .card{
@@ -102,6 +105,21 @@ border-radius:20px;
 opacity:0;
 transition:0.3s;
 }
+
+/* 📱 MOBILE CART BAR */
+.bottomBar{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#ffcc70;
+color:#2b1b14;
+display:flex;
+justify-content:center;
+padding:12px;
+font-weight:600;
+cursor:pointer;
+}
 </style>
 </head>
 
@@ -113,78 +131,80 @@ transition:0.3s;
 
 <div class="menu">
 
-<!-- COFFEE -->
 <div class="card">
 <div class="star">⭐ Popular</div>
 <h3>Latte</h3>
 <p>₹120</p>
-<button onclick="addToCart('Latte',120)">Add</button>
+<button onclick="addToCart('Latte',120,this)">Add</button>
 </div>
 
 <div class="card">
 <div class="star">⭐ Popular</div>
 <h3>Cappuccino</h3>
 <p>₹140</p>
-<button onclick="addToCart('Cappuccino',140)">Add</button>
+<button onclick="addToCart('Cappuccino',140,this)">Add</button>
 </div>
 
 <div class="card">
 <h3>Espresso</h3>
 <p>₹100</p>
-<button onclick="addToCart('Espresso',100)">Add</button>
+<button onclick="addToCart('Espresso',100,this)">Add</button>
 </div>
 
 <div class="card">
 <div class="star">⭐ New</div>
 <h3>Mocha</h3>
 <p>₹150</p>
-<button onclick="addToCart('Mocha',150)">Add</button>
+<button onclick="addToCart('Mocha',150,this)">Add</button>
 </div>
 
 <div class="card">
 <h3>Americano</h3>
 <p>₹110</p>
-<button onclick="addToCart('Americano',110)">Add</button>
+<button onclick="addToCart('Americano',110,this)">Add</button>
 </div>
 
-<!-- SNACKS -->
 <div class="card">
 <div class="star">⭐ Popular</div>
 <h3>Sandwich</h3>
 <p>₹80</p>
-<button onclick="addToCart('Sandwich',80)">Add</button>
+<button onclick="addToCart('Sandwich',80,this)">Add</button>
 </div>
 
 <div class="card">
 <h3>French Fries</h3>
 <p>₹90</p>
-<button onclick="addToCart('Fries',90)">Add</button>
+<button onclick="addToCart('Fries',90,this)">Add</button>
 </div>
 
 <div class="card">
 <div class="star">⭐ Hot</div>
 <h3>Brownie</h3>
 <p>₹130</p>
-<button onclick="addToCart('Brownie',130)">Add</button>
+<button onclick="addToCart('Brownie',130,this)">Add</button>
 </div>
 
 <div class="card">
 <h3>Donut</h3>
 <p>₹70</p>
-<button onclick="addToCart('Donut',70)">Add</button>
+<button onclick="addToCart('Donut',70,this)">Add</button>
 </div>
 
 <div class="card">
 <div class="star">⭐ Bestseller</div>
 <h3>Cold Coffee</h3>
 <p>₹150</p>
-<button onclick="addToCart('Cold Coffee',150)">Add</button>
+<button onclick="addToCart('Cold Coffee',150,this)">Add</button>
 </div>
 
 </div>
 
-<!-- TOAST -->
 <div id="toast"></div>
+
+<!-- 🛒 BOTTOM BAR -->
+<div class="bottomBar" onclick="goCart()">
+🛒 View Cart
+</div>
 
 <script>
 
@@ -194,7 +214,7 @@ function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function addToCart(name, price){
+function addToCart(name, price, btn){
 
 if(!cart[name]){
 cart[name] = {price:price, qty:1};
@@ -204,6 +224,26 @@ cart[name].qty += 1;
 
 save();
 showToast(name + " added ☕");
+
+/* ✨ FLY ANIMATION */
+let dot = document.createElement("div");
+dot.className = "flying-item";
+document.body.appendChild(dot);
+
+let rect = btn.getBoundingClientRect();
+
+dot.style.left = rect.left + "px";
+dot.style.top = rect.top + "px";
+
+setTimeout(()=>{
+dot.style.left = "90%";
+dot.style.top = "90%";
+dot.style.opacity = "0";
+},50);
+
+setTimeout(()=>{
+dot.remove();
+},900);
 }
 
 function goCart(){
