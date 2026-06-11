@@ -226,8 +226,8 @@ cursor:pointer;
 </div>
 
 <!-- BOTTOM CART -->
-<div class="bottomBar" onclick="goCart()">
-🛒 View Cart - <span id="count">0</span>
+<div class="bottomBar" onclick="goOrder()">
+🧾 Proceed to Order - <span id="count">0</span>
 </div>
 
 <script>
@@ -282,7 +282,13 @@ function goCart(){
 window.location.href="cart.html";
 }
 
+function goOrder(){
+window.location.href = "order.html";
+}
+
 updateCount();
+
+
 
 </script>
 
