@@ -39,11 +39,6 @@ display:flex;
 justify-content:space-between;
 padding:12px;
 border-bottom:1px solid rgba(255,255,255,0.1);
-transition:0.2s;
-}
-
-.item:hover{
-transform:scale(1.01);
 }
 
 /* TOTAL */
@@ -54,7 +49,7 @@ font-weight:700;
 margin-top:15px;
 }
 
-/* BUTTON AREA */
+/* BUTTONS */
 .actions{
 display:flex;
 gap:10px;
@@ -72,7 +67,6 @@ font-weight:600;
 
 .menu{ background:#ffcc70; color:#2b1b14; }
 .pay{ background:#2e7d32; color:white; }
-.back{ background:#c62828; color:white; }
 
 /* EMPTY */
 .empty{
@@ -92,23 +86,24 @@ opacity:0.8;
 
 <script>
 
-// 🧠 LOAD CART
+// 🧠 LOAD CART (ONLY FROM LOCALSTORAGE)
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-// 📊 RENDER ORDER (FIXED - NO DUPLICATION)
+// 📊 RENDER (NO DUPLICATION FIXED)
 function render(){
 
 let box = document.getElementById("box");
 box.innerHTML = "";
 
 let total = 0;
-let html = "";
 let hasItems = false;
+let html = "";
 
-Object.keys(cart).forEach(item => {
+// build HTML safely first
+for(let item in cart){
 
 let data = cart[item];
-if(!data || data.qty <= 0) return;
+if(!data || data.qty <= 0) continue;
 
 hasItems = true;
 
@@ -121,31 +116,27 @@ html += `
   <span>₹${itemTotal}</span>
 </div>
 `;
-});
+}
 
 if(!hasItems){
 box.innerHTML = `<div class="empty">☕ No items in order</div>`;
 return;
 }
 
+// final render
 box.innerHTML = html + `
 <div class="total">Total: ₹${total}</div>
 
 <div class="actions">
 <button class="btn menu" onclick="goMenu()">Add More</button>
 <button class="btn pay" onclick="goPayment()">Proceed to Payment</button>
-<button class="btn back" onclick="goCart()">Back</button>
 </div>
 `;
 }
 
-// 🏠 NAVIGATION
+// NAVIGATION (NO CART PAGE ANYMORE)
 function goMenu(){
 window.location.href = "menu.html";
-}
-
-function goCart(){
-window.location.href = "cart.html";
 }
 
 function goPayment(){
