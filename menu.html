@@ -9,7 +9,7 @@
 
 <style>
 
-/* ✨ FLYING ANIMATION FIXED */
+/* ✨ FLYING ANIMATION */
 .flying-item{
   position:fixed;
   width:12px;
@@ -24,72 +24,82 @@
 body{
 margin:0;
 font-family:Poppins;
-background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+background:#1f120d;
 color:white;
-padding:20px;
+padding:15px;
 }
 
 h1{
 text-align:center;
-margin-bottom:20px;
+font-size:20px;
+margin-bottom:15px;
 }
 
+/* MENU GRID */
 .menu{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+grid-template-columns:1fr;
+gap:12px;
 padding-bottom:80px;
 }
 
+/* CARD */
 .card{
-background:#f5e6d3;
-color:#2b1b14;
-padding:15px;
+background:#2b1b14;
 border-radius:15px;
-text-align:center;
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
-position:relative;
-transition:0.3s;
+padding:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
-.card:hover{
-transform:translateY(-5px);
-}
-
+/* STAR */
 .star{
 position:absolute;
-top:10px;
+top:8px;
 right:10px;
 background:#ffcc70;
-padding:5px 8px;
-border-radius:20px;
-font-size:12px;
-font-weight:600;
-}
-
-/* BUTTON */
-button{
-margin-top:10px;
-padding:10px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-background:#2b1b14;
-color:white;
-font-weight:600;
-}
-
-/* CART BUTTON */
-.cartBtn{
-background:#ffcc70;
 color:#2b1b14;
-padding:10px 15px;
+padding:3px 8px;
 border-radius:20px;
+font-size:11px;
 font-weight:600;
+}
+
+/* LEFT */
+.left h3{
+margin:0;
+font-size:15px;
+}
+
+.left p{
+margin:0;
+font-size:13px;
+opacity:0.8;
+}
+
+/* CONTROL BUTTONS */
+.controls{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.controls button{
+background:#ffcc70;
+border:none;
+padding:5px 10px;
+border-radius:8px;
+font-weight:700;
 cursor:pointer;
-position:fixed;
-top:20px;
-right:20px;
+color:#2b1b14;
+}
+
+.controls span{
+min-width:20px;
+text-align:center;
+font-weight:600;
 }
 
 /* TOAST */
@@ -106,7 +116,7 @@ opacity:0;
 transition:0.3s;
 }
 
-/* 📱 MOBILE CART BAR */
+/* BOTTOM BAR */
 .bottomBar{
 position:fixed;
 bottom:0;
@@ -120,6 +130,7 @@ padding:12px;
 font-weight:600;
 cursor:pointer;
 }
+
 </style>
 </head>
 
@@ -127,83 +138,72 @@ cursor:pointer;
 
 <h1>☕ Drip Cafe Menu</h1>
 
-<div class="cartBtn" onclick="goCart()">View Cart 🛒</div>
-
 <div class="menu">
 
+<!-- LATTE -->
 <div class="card">
-<div class="star">⭐ Popular</div>
-<h3>Latte</h3>
+<div class="left">
+<h3>Latte ⭐</h3>
 <p>₹120</p>
-<button onclick="addToCart('Latte',120,this)">Add</button>
 </div>
 
+<div class="controls">
+<button onclick="decItem('Latte')">-</button>
+<span id="Latte-qty">0</span>
+<button onclick="incItem('Latte',120)">+</button>
+</div>
+</div>
+
+<!-- CAPPUCCINO -->
 <div class="card">
-<div class="star">⭐ Popular</div>
-<h3>Cappuccino</h3>
+<div class="left">
+<h3>Cappuccino ⭐</h3>
 <p>₹140</p>
-<button onclick="addToCart('Cappuccino',140,this)">Add</button>
 </div>
 
+<div class="controls">
+<button onclick="decItem('Cappuccino')">-</button>
+<span id="Cappuccino-qty">0</span>
+<button onclick="incItem('Cappuccino',140)">+</button>
+</div>
+</div>
+
+<!-- ESPRESSO -->
 <div class="card">
+<div class="left">
 <h3>Espresso</h3>
 <p>₹100</p>
-<button onclick="addToCart('Espresso',100,this)">Add</button>
 </div>
 
+<div class="controls">
+<button onclick="decItem('Espresso')">-</button>
+<span id="Espresso-qty">0</span>
+<button onclick="incItem('Espresso',100)">+</button>
+</div>
+</div>
+
+<!-- MOCHA -->
 <div class="card">
-<div class="star">⭐ New</div>
-<h3>Mocha</h3>
+<div class="left">
+<h3>Mocha ⭐</h3>
 <p>₹150</p>
-<button onclick="addToCart('Mocha',150,this)">Add</button>
 </div>
 
-<div class="card">
-<h3>Americano</h3>
-<p>₹110</p>
-<button onclick="addToCart('Americano',110,this)">Add</button>
+<div class="controls">
+<button onclick="decItem('Mocha')">-</button>
+<span id="Mocha-qty">0</span>
+<button onclick="incItem('Mocha',150)">+</button>
 </div>
-
-<div class="card">
-<div class="star">⭐ Popular</div>
-<h3>Sandwich</h3>
-<p>₹80</p>
-<button onclick="addToCart('Sandwich',80,this)">Add</button>
-</div>
-
-<div class="card">
-<h3>French Fries</h3>
-<p>₹90</p>
-<button onclick="addToCart('Fries',90,this)">Add</button>
-</div>
-
-<div class="card">
-<div class="star">⭐ Hot</div>
-<h3>Brownie</h3>
-<p>₹130</p>
-<button onclick="addToCart('Brownie',130,this)">Add</button>
-</div>
-
-<div class="card">
-<h3>Donut</h3>
-<p>₹70</p>
-<button onclick="addToCart('Donut',70,this)">Add</button>
-</div>
-
-<div class="card">
-<div class="star">⭐ Bestseller</div>
-<h3>Cold Coffee</h3>
-<p>₹150</p>
-<button onclick="addToCart('Cold Coffee',150,this)">Add</button>
 </div>
 
 </div>
 
+<!-- TOAST -->
 <div id="toast"></div>
 
-<!-- 🛒 BOTTOM BAR -->
+<!-- BOTTOM CART -->
 <div class="bottomBar" onclick="goCart()">
-🛒 View Cart
+🛒 View Cart - <span id="count">0</span>
 </div>
 
 <script>
@@ -214,51 +214,56 @@ function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function addToCart(name, price, btn){
+// ➕ INCREASE
+function incItem(name, price){
 
 if(!cart[name]){
 cart[name] = {price:price, qty:1};
 }else{
-cart[name].qty += 1;
+cart[name].qty++;
 }
 
 save();
-showToast(name + " added ☕");
+updateUI(name);
+updateCount();
+}
 
-/* ✨ FLY ANIMATION */
-let dot = document.createElement("div");
-dot.className = "flying-item";
-document.body.appendChild(dot);
+// ➖ DECREASE
+function decItem(name){
 
-let rect = btn.getBoundingClientRect();
+if(cart[name]){
+cart[name].qty--;
 
-dot.style.left = rect.left + "px";
-dot.style.top = rect.top + "px";
+if(cart[name].qty <= 0){
+delete cart[name];
+}
+}
 
-setTimeout(()=>{
-dot.style.left = "90%";
-dot.style.top = "90%";
-dot.style.opacity = "0";
-},50);
+save();
+updateUI(name);
+updateCount();
+}
 
-setTimeout(()=>{
-dot.remove();
-},900);
+// 🔄 UPDATE UI
+function updateUI(name){
+let el = document.getElementById(name + "-qty");
+el.innerText = cart[name] ? cart[name].qty : 0;
+}
+
+// 🛒 COUNT
+function updateCount(){
+let count = 0;
+for(let i in cart){
+count += cart[i].qty;
+}
+document.getElementById("count").innerText = count;
 }
 
 function goCart(){
-window.location.href = "cart.html";
+window.location.href="cart.html";
 }
 
-function showToast(msg){
-let t = document.getElementById("toast");
-t.innerText = msg;
-t.style.opacity = 1;
-
-setTimeout(()=>{
-t.style.opacity = 0;
-},1200);
-}
+updateCount();
 
 </script>
 
