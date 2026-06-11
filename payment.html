@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment - Drip Cafe</title>
+<title>Pay - Drip Cafe</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{
 margin:0;
 font-family:Poppins;
-background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+background:#1f120d;
 color:white;
 display:flex;
 justify-content:center;
@@ -21,37 +22,61 @@ height:100vh;
 
 .box{
 text-align:center;
-background:#f5e6d3;
-color:#2b1b14;
-padding:30px;
+background:#2b1b14;
+padding:25px;
 border-radius:20px;
-width:300px;
+width:320px;
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-.loader{
-border:5px solid #ddd;
-border-top:5px solid #2b1b14;
-border-radius:50%;
-width:50px;
-height:50px;
-margin:20px auto;
-animation:spin 1s linear infinite;
+h2{
+color:#ffcc70;
 }
 
-@keyframes spin{
-100%{ transform:rotate(360deg); }
+/* QR IMAGE */
+.qr{
+width:180px;
+height:180px;
+margin:15px auto;
+background:white;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
 }
 
-.text{
-font-weight:600;
-margin-top:10px;
+.qr img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-.success{
-display:none;
+/* SCAN ANIMATION */
+.scan-line{
+width:100%;
+height:4px;
+background:#ffcc70;
+position:absolute;
+top:0;
+left:0;
+animation:scan 2s infinite;
 }
 
+@keyframes scan{
+0%{top:0;}
+50%{top:180px;}
+100%{top:0;}
+}
+
+.qr-wrapper{
+position:relative;
+width:180px;
+height:180px;
+margin:auto;
+}
+
+/* BUTTON */
 .btn{
 margin-top:15px;
 padding:10px;
@@ -62,6 +87,13 @@ color:white;
 cursor:pointer;
 font-weight:600;
 }
+
+.small{
+font-size:12px;
+opacity:0.7;
+margin-top:10px;
+}
+
 </style>
 </head>
 
@@ -69,37 +101,28 @@ font-weight:600;
 
 <div class="box">
 
-<!-- LOADING -->
-<div id="loading">
-<div class="loader"></div>
-<div class="text">Processing Payment...</div>
+<h2>Scan & Pay ☕</h2>
+
+<div class="qr-wrapper">
+<div class="qr">
+<!-- Replace with your QR image -->
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=DripCafePayment" />
+</div>
+<div class="scan-line"></div>
 </div>
 
-<!-- SUCCESS -->
-<div id="success" class="success">
-<h2>🎉 Payment Successful</h2>
-<p>Your coffee is on the way ☕🚀</p>
-<button class="btn" onclick="goHome()">Back to Home</button>
-</div>
+<p class="small">Scan using Google Pay / PhonePe / Paytm</p>
+
+<button class="btn" onclick="done()">I Have Paid</button>
 
 </div>
 
 <script>
 
-// 🧠 PAYMENT FLOW CONTROL
-setTimeout(() => {
-
-document.getElementById("loading").style.display = "none";
-document.getElementById("success").style.display = "block";
-
-// 🧹 CLEAR CART ONLY AFTER SUCCESS IS SHOWN
+// clear cart on payment success
+function done(){
 localStorage.removeItem("cart");
-
-}, 3000);
-
-// 🏠 HOME
-function goHome(){
-window.location.href = "index.html";
+window.location.href = "successful.html";
 }
 
 </script>
