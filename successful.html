@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Successful</title>
+<title>Order Confirmed</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -20,56 +20,55 @@ align-items:center;
 height:100vh;
 }
 
-.box{
+.container{
 text-align:center;
 background:#1f120d;
 padding:30px;
-border-radius:20px;
+border-radius:18px;
 width:320px;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-animation:pop 0.6s ease;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* POP ANIMATION */
-@keyframes pop{
-0%{transform:scale(0.5); opacity:0;}
-100%{transform:scale(1); opacity:1;}
-}
-
-/* CHECK ICON */
-.check{
-width:80px;
-height:80px;
-background:#2e7d32;
+/* subtle check */
+.icon{
+width:70px;
+height:70px;
+margin:auto;
 border-radius:50%;
+border:2px solid #2e7d32;
 display:flex;
 align-items:center;
 justify-content:center;
-margin:auto;
-font-size:40px;
-animation:bounce 0.8s ease;
+font-size:30px;
+color:#2e7d32;
 }
 
-@keyframes bounce{
-0%{transform:scale(0);}
-60%{transform:scale(1.2);}
-100%{transform:scale(1);}
-}
-
+/* title */
 h2{
 margin-top:15px;
-color:#ffcc70;
+font-size:20px;
+font-weight:600;
 }
 
+/* text */
 p{
-opacity:0.8;
-font-size:14px;
+font-size:13px;
+opacity:0.7;
+margin-top:8px;
+line-height:1.4;
 }
 
-/* BUTTON */
+/* order id */
+.order-id{
+margin-top:12px;
+font-size:12px;
+opacity:0.6;
+}
+
+/* button */
 .btn{
-margin-top:15px;
-padding:10px;
+margin-top:18px;
+padding:10px 14px;
 border:none;
 border-radius:10px;
 background:#ffcc70;
@@ -78,35 +77,46 @@ font-weight:600;
 cursor:pointer;
 }
 
+.btn:hover{
+opacity:0.9;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
-<div class="check">✔</div>
+<div class="icon">✓</div>
 
-<h2>Order Placed!</h2>
-<p>Your coffee is being prepared ☕🚀</p>
+<h2>Order Confirmed</h2>
 
-<button class="btn" onclick="home()">Back to Home</button>
+<p>
+Your order has been placed successfully.<br>
+We’re preparing your coffee ☕
+</p>
+
+<div class="order-id" id="orderId"></div>
+
+<button class="btn" onclick="goHome()">Back to Home</button>
 
 </div>
 
-<!-- 🔊 SOUND -->
-<audio id="successSound">
-<source src="https://www.soundjay.com/buttons/sounds/button-09.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 
-// play sound automatically
-window.onload = function(){
-document.getElementById("successSound").play();
+// generate simple order ID
+let id = "DC" + Math.floor(Math.random() * 1000000);
+document.getElementById("orderId").innerText = "Order ID: " + id;
+
+// optional soft sound (very subtle)
+window.onload = () => {
+let audio = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
+audio.volume = 0.2;
+audio.play().catch(()=>{});
 };
 
-function home(){
+function goHome(){
 window.location.href = "index.html";
 }
 
