@@ -8,52 +8,60 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
+/* 📱 MOBILE APP STYLE BACKGROUND */
 body{
 margin:0;
 font-family:Poppins;
-background:linear-gradient(135deg,#2b1b14,#5a3a2b);
+background:#1f120d;
 color:white;
-padding:20px;
+padding:15px;
 }
 
 h1{
 text-align:center;
+font-size:20px;
+margin-bottom:15px;
 }
 
+/* 🧾 CART CONTAINER */
 .box{
-max-width:700px;
+max-width:600px;
 margin:auto;
-background:#f5e6d3;
-color:#2b1b14;
-padding:20px;
-border-radius:20px;
+background:#2b1b14;
+padding:15px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
 }
 
+/* ITEM CARD */
 .item{
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:12px;
-border-bottom:1px solid #ddd;
+border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
+/* CONTROLS */
 .controls{
 display:flex;
 align-items:center;
 gap:8px;
 }
 
+/* BUTTONS */
 button{
 border:none;
 cursor:pointer;
-border-radius:6px;
-padding:5px 10px;
+border-radius:8px;
+padding:6px 10px;
 font-weight:600;
 }
 
 .plus, .minus{
-background:#2b1b14;
-color:white;
+background:#ffcc70;
+color:#2b1b14;
 }
 
 .remove{
@@ -61,57 +69,69 @@ background:#c62828;
 color:white;
 }
 
+/* TOTAL */
 .total{
 text-align:right;
-font-size:22px;
-font-weight:bold;
+font-size:20px;
+font-weight:700;
 margin-top:15px;
 }
 
+/* ACTIONS */
 .actions{
 display:flex;
 gap:10px;
 margin-top:20px;
 }
 
+/* ACTION BUTTONS */
 .btn{
 flex:1;
-padding:10px;
+padding:12px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 font-weight:600;
 }
 
-.menuBtn{ background:#2b1b14; color:white; }
+.menuBtn{ background:#ffcc70; color:#2b1b14; }
 .payBtn{ background:#2e7d32; color:white; }
 .clearBtn{ background:#c62828; color:white; }
 
+/* EMPTY STATE */
 .empty{
 text-align:center;
 padding:20px;
-font-size:18px;
+opacity:0.8;
+}
+
+/* SMALL ANIMATION */
+.item{
+transition:0.2s;
+}
+.item:hover{
+transform:scale(1.01);
 }
 </style>
 </head>
 
 <body>
 
-<h1>☕ Your Cart</h1>
+<h1>🛒 Your Cart</h1>
 
 <div class="box" id="box"></div>
 
 <script>
 
-// 🧠 LOAD CART SAFELY
+// 🧠 LOAD CART
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-// 💾 SAVE
+// 💾 SAVE CART
 function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// 📊 RENDER
+// 📊 RENDER CART
 function render(){
 let box = document.getElementById("box");
 box.innerHTML = "";
@@ -148,6 +168,7 @@ box.innerHTML += `
 
 if(!hasItems){
 box.innerHTML = `<div class="empty">☕ Your cart is empty</div>`;
+return;
 }
 
 box.innerHTML += `
@@ -189,7 +210,7 @@ save();
 render();
 }
 
-// 🧹 CLEAR
+// 🧹 CLEAR CART
 function clearCart(){
 cart = {};
 save();
@@ -201,7 +222,7 @@ function goMenu(){
 window.location.href = "menu.html";
 }
 
-// 💳 NEXT STEP
+// 💳 PAYMENT FLOW
 function checkout(){
 window.location.href = "order.html";
 }
