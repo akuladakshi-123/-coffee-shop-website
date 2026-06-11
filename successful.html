@@ -20,16 +20,23 @@ align-items:center;
 height:100vh;
 }
 
+/* CARD */
 .container{
 text-align:center;
 background:#1f120d;
-padding:30px;
+padding:28px;
 border-radius:18px;
 width:320px;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
+animation:pop 0.4s ease;
 }
 
-/* subtle check */
+@keyframes pop{
+from{transform:scale(0.95); opacity:0;}
+to{transform:scale(1); opacity:1;}
+}
+
+/* CHECK ICON */
 .icon{
 width:70px;
 height:70px;
@@ -43,29 +50,29 @@ font-size:30px;
 color:#2e7d32;
 }
 
-/* title */
+/* TEXT */
 h2{
 margin-top:15px;
 font-size:20px;
 font-weight:600;
 }
 
-/* text */
 p{
 font-size:13px;
-opacity:0.7;
+opacity:0.75;
 margin-top:8px;
 line-height:1.4;
 }
 
-/* order id */
+/* ORDER ID */
 .order-id{
 margin-top:12px;
 font-size:12px;
 opacity:0.6;
+letter-spacing:0.5px;
 }
 
-/* button */
+/* BUTTON */
 .btn{
 margin-top:18px;
 padding:10px 14px;
@@ -75,10 +82,11 @@ background:#ffcc70;
 color:#2b1b14;
 font-weight:600;
 cursor:pointer;
+transition:0.2s;
 }
 
 .btn:hover{
-opacity:0.9;
+transform:scale(1.03);
 }
 
 </style>
@@ -105,17 +113,18 @@ We’re preparing your coffee ☕
 
 <script>
 
-// generate simple order ID
-let id = "DC" + Math.floor(Math.random() * 1000000);
+// 📦 ORDER ID GENERATOR
+let id = "DC" + Math.floor(100000 + Math.random() * 900000);
 document.getElementById("orderId").innerText = "Order ID: " + id;
 
-// optional soft sound (very subtle)
+// 🔊 SUBTLE SOUND (SAFE)
 window.onload = () => {
 let audio = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
-audio.volume = 0.2;
+audio.volume = 0.15;
 audio.play().catch(()=>{});
 };
 
+// 🏠 HOME
 function goHome(){
 window.location.href = "index.html";
 }
