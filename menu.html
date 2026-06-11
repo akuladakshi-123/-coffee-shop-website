@@ -9,18 +9,6 @@
 
 <style>
 
-/* ✨ FLYING ANIMATION */
-.flying-item{
-  position:fixed;
-  width:12px;
-  height:12px;
-  background:#ffcc70;
-  border-radius:50%;
-  z-index:9999;
-  pointer-events:none;
-  transition:all 0.8s ease;
-}
-
 body{
 margin:0;
 font-family:Poppins;
@@ -35,7 +23,7 @@ font-size:20px;
 margin-bottom:15px;
 }
 
-/* MENU GRID */
+/* MENU */
 .menu{
 display:grid;
 grid-template-columns:1fr;
@@ -54,19 +42,6 @@ align-items:center;
 box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* STAR */
-.star{
-position:absolute;
-top:8px;
-right:10px;
-background:#ffcc70;
-color:#2b1b14;
-padding:3px 8px;
-border-radius:20px;
-font-size:11px;
-font-weight:600;
-}
-
 /* LEFT */
 .left h3{
 margin:0;
@@ -79,7 +54,7 @@ font-size:13px;
 opacity:0.8;
 }
 
-/* CONTROL BUTTONS */
+/* CONTROLS */
 .controls{
 display:flex;
 align-items:center;
@@ -100,20 +75,6 @@ color:#2b1b14;
 min-width:20px;
 text-align:center;
 font-weight:600;
-}
-
-/* TOAST */
-#toast{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-background:#2b1b14;
-color:white;
-padding:12px 20px;
-border-radius:20px;
-opacity:0;
-transition:0.3s;
 }
 
 /* BOTTOM BAR */
@@ -140,13 +101,12 @@ cursor:pointer;
 
 <div class="menu">
 
-<!-- LATTE -->
+<!-- COFFEE ITEMS -->
 <div class="card">
 <div class="left">
 <h3>Latte ⭐</h3>
 <p>₹120</p>
 </div>
-
 <div class="controls">
 <button onclick="decItem('Latte')">-</button>
 <span id="Latte-qty">0</span>
@@ -154,13 +114,11 @@ cursor:pointer;
 </div>
 </div>
 
-<!-- CAPPUCCINO -->
 <div class="card">
 <div class="left">
 <h3>Cappuccino ⭐</h3>
 <p>₹140</p>
 </div>
-
 <div class="controls">
 <button onclick="decItem('Cappuccino')">-</button>
 <span id="Cappuccino-qty">0</span>
@@ -168,13 +126,11 @@ cursor:pointer;
 </div>
 </div>
 
-<!-- ESPRESSO -->
 <div class="card">
 <div class="left">
 <h3>Espresso</h3>
 <p>₹100</p>
 </div>
-
 <div class="controls">
 <button onclick="decItem('Espresso')">-</button>
 <span id="Espresso-qty">0</span>
@@ -182,13 +138,11 @@ cursor:pointer;
 </div>
 </div>
 
-<!-- MOCHA -->
 <div class="card">
 <div class="left">
 <h3>Mocha ⭐</h3>
 <p>₹150</p>
 </div>
-
 <div class="controls">
 <button onclick="decItem('Mocha')">-</button>
 <span id="Mocha-qty">0</span>
@@ -196,10 +150,80 @@ cursor:pointer;
 </div>
 </div>
 
+<div class="card">
+<div class="left">
+<h3>Americano</h3>
+<p>₹110</p>
+</div>
+<div class="controls">
+<button onclick="decItem('Americano')">-</button>
+<span id="Americano-qty">0</span>
+<button onclick="incItem('Americano',110)">+</button>
+</div>
 </div>
 
-<!-- TOAST -->
-<div id="toast"></div>
+<!-- SNACKS -->
+<div class="card">
+<div class="left">
+<h3>Sandwich ⭐</h3>
+<p>₹80</p>
+</div>
+<div class="controls">
+<button onclick="decItem('Sandwich')">-</button>
+<span id="Sandwich-qty">0</span>
+<button onclick="incItem('Sandwich',80)">+</button>
+</div>
+</div>
+
+<div class="card">
+<div class="left">
+<h3>French Fries</h3>
+<p>₹90</p>
+</div>
+<div class="controls">
+<button onclick="decItem('Fries')">-</button>
+<span id="Fries-qty">0</span>
+<button onclick="incItem('Fries',90)">+</button>
+</div>
+</div>
+
+<div class="card">
+<div class="left">
+<h3>Brownie ⭐</h3>
+<p>₹130</p>
+</div>
+<div class="controls">
+<button onclick="decItem('Brownie')">-</button>
+<span id="Brownie-qty">0</span>
+<button onclick="incItem('Brownie',130)">+</button>
+</div>
+</div>
+
+<div class="card">
+<div class="left">
+<h3>Donut</h3>
+<p>₹70</p>
+</div>
+<div class="controls">
+<button onclick="decItem('Donut')">-</button>
+<span id="Donut-qty">0</span>
+<button onclick="incItem('Donut',70)">+</button>
+</div>
+</div>
+
+<div class="card">
+<div class="left">
+<h3>Cold Coffee ⭐</h3>
+<p>₹150</p>
+</div>
+<div class="controls">
+<button onclick="decItem('Cold Coffee')">-</button>
+<span id="Cold Coffee-qty">0</span>
+<button onclick="incItem('Cold Coffee',150)">+</button>
+</div>
+</div>
+
+</div>
 
 <!-- BOTTOM CART -->
 <div class="bottomBar" onclick="goCart()">
@@ -214,43 +238,38 @@ function save(){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// ➕ INCREASE
+// ➕
 function incItem(name, price){
-
 if(!cart[name]){
 cart[name] = {price:price, qty:1};
 }else{
 cart[name].qty++;
 }
-
 save();
 updateUI(name);
 updateCount();
 }
 
-// ➖ DECREASE
+// ➖
 function decItem(name){
-
 if(cart[name]){
 cart[name].qty--;
-
 if(cart[name].qty <= 0){
 delete cart[name];
 }
 }
-
 save();
 updateUI(name);
 updateCount();
 }
 
-// 🔄 UPDATE UI
+// UI update
 function updateUI(name){
 let el = document.getElementById(name + "-qty");
 el.innerText = cart[name] ? cart[name].qty : 0;
 }
 
-// 🛒 COUNT
+// count
 function updateCount(){
 let count = 0;
 for(let i in cart){
