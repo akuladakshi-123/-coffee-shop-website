@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Processing Order</title>
+<title>Payment Screen</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -20,40 +20,33 @@ height:100vh;
 color:white;
 }
 
-/* BIG SCREEN */
+/* SCREEN */
 .screen{
 width:650px;
-height:380px;
+height:400px;
 background:#1f120d;
 border-radius:18px;
 box-shadow:0 20px 60px rgba(0,0,0,0.6);
+padding:30px;
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:30px;
 }
 
 /* TITLE */
 .title{
-font-size:26px;
+font-size:24px;
 font-weight:600;
 color:#ffcc70;
 }
 
-/* SUB TEXT */
-.sub{
-margin-top:10px;
-font-size:14px;
-opacity:0.7;
-}
-
-/* QR */
+/* QR BOX */
 .qr{
-width:170px;
-height:170px;
-margin-top:25px;
+width:180px;
+height:180px;
+margin-top:20px;
 background:white;
 padding:10px;
 border-radius:10px;
@@ -64,10 +57,28 @@ width:100%;
 height:100%;
 }
 
+/* AMOUNT INSIDE SCREEN (BIG FOCUS) */
+.amount{
+margin-top:20px;
+font-size:22px;
+font-weight:700;
+background:#2b1b14;
+padding:10px 20px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+/* SUB TEXT */
+.sub{
+margin-top:10px;
+font-size:13px;
+opacity:0.7;
+}
+
 /* STATUS */
 .status{
-margin-top:20px;
-font-size:13px;
+margin-top:18px;
+font-size:12px;
 opacity:0.6;
 letter-spacing:1px;
 }
@@ -79,21 +90,39 @@ letter-spacing:1px;
 
 <div class="screen">
 
-<div class="title">☕ Drip Cafe Payment</div>
-
-<div class="sub">Please scan & complete payment</div>
+<div class="title">☕ Drip Cafe Payment Counter</div>
 
 <div class="qr">
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=DripCafePayment" />
+<img id="qrImg" src="" />
 </div>
 
-<div class="status">Processing order...</div>
+<div class="amount" id="amount">₹0</div>
+
+<div class="sub">Scan QR & Pay using UPI</div>
+
+<div class="status">Processing payment...</div>
 
 </div>
 
 <script>
 
-// SIMPLE KFC STYLE WAIT (NO ANIMATION)
+// LOAD CART
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+// CALCULATE TOTAL
+let total = 0;
+for(let i in cart){
+total += cart[i].price * cart[i].qty;
+}
+
+// SHOW AMOUNT
+document.getElementById("amount").innerText = "Total: ₹" + total;
+
+// QR (you can even pass amount inside data)
+document.getElementById("qrImg").src =
+"https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=DripCafePay%20Amount%20" + total;
+
+// AUTO SUCCESS AFTER 4.5 SEC
 setTimeout(()=>{
 localStorage.removeItem("cart");
 window.location.href = "successful.html";
